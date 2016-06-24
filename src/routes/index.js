@@ -17,6 +17,7 @@ import login from './login';
 import register from './register';
 import content from './content';
 import error from './error';
+import dashboard from './dashboard';
 
 export default {
 
@@ -24,6 +25,7 @@ export default {
 
   children: [
     home,
+    dashboard,
     contact,
     login,
     register,
