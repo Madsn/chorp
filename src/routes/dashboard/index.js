@@ -7,6 +7,7 @@ export default {
   path: '/dashboard',
 
   async action() {
+    console.log('fetching data');
     const resp = await fetch('/graphql', {
       method: 'post',
       headers: {
@@ -18,9 +19,10 @@ export default {
       }),
       credentials: 'include',
     });
-    const { data } = await resp.json();
+    if (resp.status !== 200) throw new Error(resp.statusText);
+    const {data} = await resp.json();
     if (!data || !data.booking) throw new Error('Failed to load the dashboard data.');
-    return <Dashboard bookings={data.booking} />;
+    return <Dashboard bookings={data.booking}/>;
   },
 
 };
