@@ -74,11 +74,11 @@
     "enzyme": "^2.4.1",
     "eslint": "^3.4.0",
     "eslint-config-airbnb": "^11.1.0",
-    "eslint-loader": "^1.5.0",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.2.1",
+    "eslint-watch": "2.1.14",
     "extend": "^3.0.0",
     "file-loader": "^0.9.0",
     "gaze": "^1.1.1",
@@ -88,6 +88,7 @@
     "mkdirp": "^0.5.1",
     "mocha": "^3.0.2",
     "ncp": "^2.0.0",
+    "npm-run-all": "^3.1.0",
     "pixrem": "^3.0.2",
     "pleeease-filters": "^3.0.0",
     "postcss": "^5.2.0",
@@ -150,7 +151,6 @@
       "array-bracket-spacing": "off",
       "object-curly-spacing": "off",
       "object-shorthand": "off",
-      "arrow-parens": "off",
       "import/no-extraneous-dependencies": "off",
       "react/forbid-prop-types": "off",
       "react/jsx-filename-extension": "off",
@@ -189,9 +189,9 @@
     }
   },
   "scripts": {
-    "eslint": "eslint src tools",
+    "lint": "esw src tools --color",
+    "lint:watch": "npm run lint -- --watch",
     "stylelint": "stylelint \"src/**/*.css\"",
-    "lint": "npm run eslint && npm run stylelint",
     "test": "mocha \"src/**/*.test.js\" --require test/setup.js --compilers js:babel-register",
     "test:watch": "npm run test -- --reporter min --watch",
     "clean": "babel-node tools/run clean",
@@ -201,6 +201,7 @@
     "build": "babel-node tools/run build",
     "deploy": "babel-node tools/run deploy",
     "render": "babel-node tools/run render",
-    "start": "babel-node tools/run start"
+    "server:run": "babel-node tools/run start",
+    "start": "npm-run-all --parallel lint:watch test:watch server:run"
   }
 }

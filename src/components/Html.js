@@ -11,7 +11,7 @@ function Html({ title, description, style, script, children, lang, state }) {
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-        {style && <style id="css" dangerouslySetInnerHTML={{ __html: style }} />}
+        <style id="css" dangerouslySetInnerHTML={{ __html: style }} />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
@@ -38,18 +38,13 @@ function Html({ title, description, style, script, children, lang, state }) {
 }
 
 Html.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  style: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  style: PropTypes.string.isRequired,
   script: PropTypes.string,
   children: PropTypes.string,
   state: PropTypes.object.isRequired,
   lang: PropTypes.string.isRequired,
-};
-
-Html.defaultProps = {
-  title: '',
-  description: '',
 };
 
 export default Html;

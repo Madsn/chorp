@@ -14,8 +14,7 @@ import FastClick from 'fastclick';
 import UniversalRouter from 'universal-router';
 import { readState, saveState } from 'history/lib/DOMStateStorage';
 import { addLocaleData } from 'react-intl';
-import en from 'react-intl/locale-data/en';
-import cs from 'react-intl/locale-data/cs';
+import da from 'react-intl/locale-data/da';
 import routes from './routes';
 import createHistory from './core/createHistory';
 import configureStore from './store/configureStore';
@@ -27,7 +26,7 @@ import {
 } from './core/DOMUtils';
 import Provide from './components/Provide';
 
-[en, cs].forEach(addLocaleData);
+[da].forEach(addLocaleData);
 
 const context = {
   store: null,

@@ -13,12 +13,10 @@ function run() {
 if (!global.Intl) {
   require.ensure([
     'intl',
-    'intl/locale-data/jsonp/en.js',
-    'intl/locale-data/jsonp/cs.js',
+    'intl/locale-data/jsonp/da.js',
   ], require => {
     require('intl');
-    require('intl/locale-data/jsonp/en.js');
-    require('intl/locale-data/jsonp/cs.js');
+    require('intl/locale-data/jsonp/da.js');
 
     run();
   }, 'intl');

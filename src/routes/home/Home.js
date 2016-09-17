@@ -12,7 +12,10 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { FormattedRelative } from 'react-intl';
 import s from './Home.css';
 
-function Home({ news }) {
+const title = 'React Starter Kit';
+
+function Home({ news }, context) {
+  context.setTitle(title);
   return (
     <div className={s.root}>
       <div className={s.container}>
@@ -46,5 +49,6 @@ Home.propTypes = {
     contentSnippet: PropTypes.string,
   })).isRequired,
 };
+Home.contextTypes = { setTitle: PropTypes.func.isRequired };
 
 export default withStyles(s)(Home);
