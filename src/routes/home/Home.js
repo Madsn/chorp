@@ -9,6 +9,7 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { FormattedRelative } from 'react-intl';
 import s from './Home.css';
 
 function Home({ news }) {
@@ -19,7 +20,13 @@ function Home({ news }) {
         <ul className={s.news}>
           {news.map((item, index) => (
             <li key={index} className={s.newsItem}>
-              <a href={item.link} className={s.newsTitle}>{item.title}</a>
+              <span className={s.newsTitle}>
+                <a href={item.link}>{item.title}</a>
+                {' '}
+                <span className={s.publishedDate}>
+                  <FormattedRelative value={item.publishedDate} />
+                </span>
+              </span>
               <span
                 className={s.newsDesc}
                 dangerouslySetInnerHTML={{ __html: item.contentSnippet }}

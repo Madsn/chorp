@@ -18,15 +18,18 @@ class App extends Component {
 
   static propTypes = {
     context: PropTypes.shape({
+      createHref: PropTypes.func.isRequired,
+      store: PropTypes.object.isRequired,
       insertCss: PropTypes.func,
       setTitle: PropTypes.func,
       setMeta: PropTypes.func,
-    }),
+    }).isRequired,
     children: PropTypes.element.isRequired,
     error: PropTypes.object,
   };
 
   static childContextTypes = {
+    createHref: PropTypes.func.isRequired,
     insertCss: PropTypes.func.isRequired,
     setTitle: PropTypes.func.isRequired,
     setMeta: PropTypes.func.isRequired,
@@ -35,6 +38,7 @@ class App extends Component {
   getChildContext() {
     const context = this.props.context;
     return {
+      createHref: context.createHref,
       insertCss: context.insertCss || emptyFunction,
       setTitle: context.setTitle || emptyFunction,
       setMeta: context.setMeta || emptyFunction,
@@ -51,14 +55,18 @@ class App extends Component {
   }
 
   render() {
-    return !this.props.error ? (
+    if (this.props.error) {
+      return this.props.children;
+    }
+
+    return (
       <div>
         <Header />
         {this.props.children}
         <Feedback />
         <Footer />
       </div>
-    ) : this.props.children;
+    );
   }
 
 }
