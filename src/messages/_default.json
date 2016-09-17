@@ -1,32 +1,5 @@
 [
   {
-    "id": "header.banner.desc",
-    "defaultMessage": "Complex web apps made easy",
-    "message": "",
-    "description": "Description in header",
-    "files": [
-      "src/components/Header/Header.js"
-    ]
-  },
-  {
-    "id": "header.banner.title",
-    "defaultMessage": "React",
-    "message": "",
-    "description": "Title in page header",
-    "files": [
-      "src/components/Header/Header.js"
-    ]
-  },
-  {
-    "id": "header.brand",
-    "defaultMessage": "Your Company Brand",
-    "message": "",
-    "description": "Brand name displayed in header",
-    "files": [
-      "src/components/Header/Header.js"
-    ]
-  },
-  {
     "id": "navigation.about",
     "defaultMessage": "About",
     "message": "",
@@ -78,6 +51,15 @@
     "message": "",
     "files": [
       "src/routes/bookings/Bookings.js"
+    ]
+  },
+  {
+    "id": "header.brand",
+    "description": "Brand name displayed in header",
+    "defaultMessage": "Your Company Brand",
+    "message": "",
+    "files": [
+      "src/components/Header/Header.js"
     ]
   }
 ]

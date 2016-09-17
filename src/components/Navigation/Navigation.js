@@ -7,12 +7,16 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
-import cx from 'classnames';
+import React, {PropTypes} from 'react';
+import {
+  Nav,
+  NavItem,
+  NavDropdown,
+  MenuItem,
+} from 'react-bootstrap';
+import {defineMessages, FormattedMessage} from 'react-intl';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Navigation.css';
-import Link from '../Link';
 
 const messages = defineMessages({
   about: {
@@ -42,25 +46,28 @@ const messages = defineMessages({
   },
 });
 
-function Navigation({ className }) {
+function Navigation() {
   return (
-    <div className={cx(s.root, className)} role="navigation">
-      <Link className={s.link} to="/about">
-        <FormattedMessage {...messages.about}/>
-      </Link>
-      <Link className={s.link} to="/contact">
-        <FormattedMessage {...messages.contact}/>
-      </Link>
-      <span className={s.spacer}> | </span>
-      <Link className={s.link} to="/login">
-        <FormattedMessage {...messages.login}/>
-      </Link>
-      <span className={s.spacer}>
-        <FormattedMessage {...messages.or}/>
-      </span>
-      <Link className={cx(s.link, s.highlight)} to="/register">
-        <FormattedMessage {...messages.signup}/>
-      </Link>
+    <div>
+      <Nav>
+        <NavItem eventKey={1} href="/bookings">Bookings</NavItem>
+        <NavItem eventKey={2} href="#">Link</NavItem>
+        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+          <MenuItem eventKey={3.1}>Action</MenuItem>
+          <MenuItem eventKey={3.2}>Another action</MenuItem>
+          <MenuItem eventKey={3.3}>Something else here</MenuItem>
+          <MenuItem divider/>
+          <MenuItem eventKey={3.3}>Separated link</MenuItem>
+        </NavDropdown>
+      </Nav>
+      <Nav pullRight>
+        <NavItem href="/login">
+          <FormattedMessage {...messages.login}/>
+        </NavItem>
+        <NavItem href="/register">
+          <FormattedMessage {...messages.signup}/>
+        </NavItem>
+      </Nav>
     </div>
   );
 }

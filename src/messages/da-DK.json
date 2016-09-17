@@ -3,19 +3,13 @@
     "id": "header.banner.desc",
     "description": "Description in header",
     "defaultMessage": "Complex web apps made easy",
-    "message": "Header banner beskrivelse tekst",
-    "files": [
-      "src/components/Header/Header.js"
-    ]
+    "message": "Header banner beskrivelse tekst"
   },
   {
     "id": "header.banner.title",
     "description": "Title in page header",
     "defaultMessage": "React",
-    "message": "Header banner titel",
-    "files": [
-      "src/components/Header/Header.js"
-    ]
+    "message": "Header banner titel"
   },
   {
     "id": "header.brand",
