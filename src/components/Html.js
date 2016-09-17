@@ -5,16 +5,16 @@ function Html({ title, description, style, script, children, lang, state }) {
   return (
     <html className="no-js" lang={lang}>
       <head>
-        <meta charSet="utf-8" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <meta charSet="utf-8"/>
+        <meta httpEquiv="x-ua-compatible" content="ie=edge"/>
         <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-        <style id="css" dangerouslySetInnerHTML={{ __html: style }} />
+        <meta name="description" content={description}/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+        <style id="css" dangerouslySetInnerHTML={{ __html: style }}/>
       </head>
       <body>
-        <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
+        <div id="app" dangerouslySetInnerHTML={{ __html: children }}/>
         {script && (
           <script
             id="source"
@@ -30,7 +30,7 @@ function Html({ title, description, style, script, children, lang, state }) {
           />
         }
         {analytics.google.trackingId &&
-          <script src="https://www.google-analytics.com/analytics.js" async defer />
+          <script src="https://www.google-analytics.com/analytics.js" async defer/>
         }
       </body>
     </html>

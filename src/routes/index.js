@@ -17,7 +17,7 @@ import login from './login';
 import register from './register';
 import content from './content';
 import error from './error';
-import dashboard from './dashboard';
+import bookings from './bookings';
 
 export default {
 
@@ -29,7 +29,7 @@ export default {
     contact,
     login,
     register,
-    dashboard,
+    bookings,
 
     // place new routes before...
     content,

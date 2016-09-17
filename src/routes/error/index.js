@@ -18,7 +18,7 @@ export default {
   action({ render, context, error }) {
     return render(
       <App context={context} error={error}>
-        <ErrorPage error={error} />
+        <ErrorPage error={error}/>
       </App>,
       error.status || 500
     );

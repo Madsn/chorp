@@ -38,19 +38,19 @@ function Header() {
   return (
     <div className={s.root}>
       <div className={s.container}>
-        <Navigation className={s.nav} />
+        <Navigation className={s.nav}/>
         <Link className={s.brand} to="/">
-          <img src={logoUrl} width="38" height="38" alt="React" />
+          <img src={logoUrl} width="38" height="38" alt="React"/>
           <span className={s.brandTxt}>
-            <FormattedMessage {...messages.brand} />
+            <FormattedMessage {...messages.brand}/>
           </span>
         </Link>
-        <LanguageSwitcher />
+        <LanguageSwitcher/>
         <div className={s.banner}>
           <h1 className={s.bannerTitle}>
-            <FormattedMessage {...messages.bannerTitle} />
+            <FormattedMessage {...messages.bannerTitle}/>
           </h1>
-          <FormattedMessage tagName="p" {...messages.bannerDesc} />
+          <FormattedMessage tagName="p" {...messages.bannerDesc}/>
         </div>
       </div>
     </div>

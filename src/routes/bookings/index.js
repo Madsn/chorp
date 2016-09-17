@@ -1,13 +1,12 @@
 import React from 'react';
-import Dashboard from './Dashboard';
+import Dashboard from './Bookings';
 import fetch from '../../core/fetch';
 
 export default {
 
-  path: '/dashboard',
+  path: '/bookings',
 
   async action() {
-    console.log('fetching data');
     const resp = await fetch('/graphql', {
       method: 'post',
       headers: {
@@ -24,5 +23,4 @@ export default {
     if (!data || !data.booking) throw new Error('Failed to load the dashboard data.');
     return <Dashboard bookings={data.booking}/>;
   },
-
 };

@@ -70,5 +70,14 @@
     "files": [
       "src/components/Navigation/Navigation.js"
     ]
+  },
+  {
+    "id": "bookings.title",
+    "description": "Bookings page title",
+    "defaultMessage": "Bookings",
+    "message": "",
+    "files": [
+      "src/routes/bookings/Bookings.js"
+    ]
   }
 ]

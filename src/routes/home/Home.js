@@ -27,7 +27,7 @@ function Home({ news }, context) {
                 <a href={item.link}>{item.title}</a>
                 {' '}
                 <span className={s.publishedDate}>
-                  <FormattedRelative value={item.publishedDate} />
+                  <FormattedRelative value={item.publishedDate}/>
                 </span>
               </span>
               <span

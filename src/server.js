@@ -22,7 +22,7 @@ import UniversalRouter from 'universal-router';
 import PrettyError from 'pretty-error';
 import './serverIntlPolyfill';
 import Html from './components/Html';
-import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
+import {ErrorPageWithoutStyle} from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
 import passport from './core/passport';
 import models from './data/models';
@@ -31,10 +31,10 @@ import routes from './routes';
 import createHistory from './core/createHistory';
 import assets from './assets'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
-import { setRuntimeVariable } from './actions/runtime';
+import {setRuntimeVariable} from './actions/runtime';
 import Provide from './components/Provide';
-import { setLocale } from './actions/intl';
-import { port, auth, locales } from './config';
+import {setLocale} from './actions/intl';
+import {port, auth, locales} from './config';
 
 const app = express();
 
@@ -62,7 +62,7 @@ app.use(requestLanguage({
     url: '/lang/{language}',
   },
 }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 //
@@ -76,14 +76,14 @@ app.use(expressJwt({
 app.use(passport.initialize());
 
 app.get('/login/facebook',
-  passport.authenticate('facebook', { scope: ['email', 'user_location'], session: false })
+  passport.authenticate('facebook', {scope: ['email', 'user_location'], session: false})
 );
 app.get('/login/facebook/return',
-  passport.authenticate('facebook', { failureRedirect: '/login', session: false }),
+  passport.authenticate('facebook', {failureRedirect: '/login', session: false}),
   (req, res) => {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
-    const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
-    res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
+    const token = jwt.sign(req.user, auth.jwt.secret, {expiresIn});
+    res.cookie('id_token', token, {maxAge: 1000 * expiresIn, httpOnly: true});
     res.redirect('/');
   }
 );
@@ -94,14 +94,14 @@ app.get('/login/facebook/return',
 app.use('/graphql', expressGraphQL(req => ({
   schema,
   graphiql: true,
-  rootValue: { request: req },
+  rootValue: {request: req},
   pretty: process.env.NODE_ENV !== 'production',
 })));
 
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
-app.get('*', async (req, res, next) => {
+app.get('*', async(req, res, next) => {
   const history = createHistory(req.url);
   // let currentLocation = history.getCurrentLocation();
   let sent = false;
@@ -186,7 +186,7 @@ app.get('*', async (req, res, next) => {
     });
 
     if (!sent) {
-      const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
+      const html = ReactDOM.renderToStaticMarkup(<Html {...data}/>);
       res.status(statusCode);
       res.send(`<!doctype html>${html}`);
     }
@@ -213,7 +213,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
       description={err.message}
       style={errorPageStyle._getCss()} // eslint-disable-line no-underscore-dangle
     >
-      {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />)}
+    {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err}/>)}
     </Html>
   );
   res.status(statusCode);

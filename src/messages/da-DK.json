@@ -3,7 +3,7 @@
     "id": "header.banner.desc",
     "description": "Description in header",
     "defaultMessage": "Complex web apps made easy",
-    "message": "",
+    "message": "Header banner beskrivelse tekst",
     "files": [
       "src/components/Header/Header.js"
     ]
@@ -12,7 +12,7 @@
     "id": "header.banner.title",
     "description": "Title in page header",
     "defaultMessage": "React",
-    "message": "",
+    "message": "Header banner titel",
     "files": [
       "src/components/Header/Header.js"
     ]
@@ -21,7 +21,7 @@
     "id": "header.brand",
     "description": "Brand name displayed in header",
     "defaultMessage": "Your Company Brand",
-    "message": "",
+    "message": "Firmanavn",
     "files": [
       "src/components/Header/Header.js"
     ]
@@ -30,7 +30,7 @@
     "id": "navigation.about",
     "description": "About link in header",
     "defaultMessage": "About",
-    "message": "",
+    "message": "Om os",
     "files": [
       "src/components/Navigation/Navigation.js"
     ]
@@ -39,7 +39,7 @@
     "id": "navigation.contact",
     "description": "Contact link in header",
     "defaultMessage": "Contact",
-    "message": "",
+    "message": "Kontakt",
     "files": [
       "src/components/Navigation/Navigation.js"
     ]
@@ -48,7 +48,7 @@
     "id": "navigation.login",
     "description": "Log in link in header",
     "defaultMessage": "Log in",
-    "message": "",
+    "message": "Log ind",
     "files": [
       "src/components/Navigation/Navigation.js"
     ]
@@ -57,7 +57,7 @@
     "id": "navigation.separator.or",
     "description": "Last separator in list, lowercase \"or\"",
     "defaultMessage": "or",
-    "message": "",
+    "message": "eller",
     "files": [
       "src/components/Navigation/Navigation.js"
     ]
@@ -66,9 +66,18 @@
     "id": "navigation.signup",
     "description": "Sign up link in header",
     "defaultMessage": "Sign up",
-    "message": "",
+    "message": "Opret bruger",
     "files": [
       "src/components/Navigation/Navigation.js"
+    ]
+  },
+  {
+    "id": "bookings.title",
+    "description": "Bookings page title",
+    "defaultMessage": "Bookings",
+    "message": "Bookinger",
+    "files": [
+      "src/routes/bookings/Bookings.js"
     ]
   }
 ]

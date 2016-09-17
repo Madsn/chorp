@@ -61,10 +61,10 @@ class App extends Component {
 
     return (
       <div>
-        <Header />
+        <Header/>
         {this.props.children}
-        <Feedback />
-        <Footer />
+        <Feedback/>
+        <Footer/>
       </div>
     );
   }
