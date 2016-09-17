@@ -19,7 +19,6 @@ function Dashboard({bookings}, context) {
               {item.status}</li>
           ))}
         </ul>
-        <p>Dashboard</p>
       </div>
     </div>
   );

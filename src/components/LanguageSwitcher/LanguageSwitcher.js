@@ -1,31 +1,34 @@
 /* eslint-disable no-shadow */
 
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { setLocale } from '../../actions/intl';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {setLocale} from '../../actions/intl';
 
-function LanguageSwitcher({ currentLocale, availableLocales, setLocale }) {
+function LanguageSwitcher({currentLocale, availableLocales, setLocale}) {
   const isSelected = locale => locale === currentLocale;
-  return (
-    <div>
-      {availableLocales.map(locale => (
-        <span key={locale}>
+  if (availableLocales.length > 1) {
+    return (
+      <div>
+        {availableLocales.map(locale => (
+          <span key={locale}>
           {isSelected(locale) ? (
             <span>{locale}</span>
           ) : (
             <a
               href={`?lang=${locale}`}
               onClick={(e) => {
-                setLocale({ locale });
+                setLocale({locale});
                 e.preventDefault();
               }}
             >{locale}</a>
           )}
-          {' '}
-        </span>
-      ))}
-    </div>
-  );
+            {' '}
+          </span>
+        ))}
+      </div>
+    );
+  }
+  return <div/>;
 }
 
 LanguageSwitcher.propTypes = {
