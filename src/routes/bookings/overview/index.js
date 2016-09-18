@@ -1,6 +1,6 @@
 import React from 'react';
-import Dashboard from './Bookings';
-import fetch from '../../core/fetch';
+import BookingOverview from './BookingOverview';
+import fetch from '../../../core/fetch';
 
 export default {
 
@@ -21,6 +21,6 @@ export default {
     if (resp.status !== 200) throw new Error(resp.statusText);
     const {data} = await resp.json();
     if (!data || !data.booking) throw new Error('Failed to load the dashboard data.');
-    return <Dashboard bookings={data.booking}/>;
+    return <BookingOverview bookings={data.booking}/>;
   },
 };

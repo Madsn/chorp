@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
-import s from './Bookings.css';
-import BookingTable from '../../components/BookingComponents/BookingTable';
+import s from './BookingOverview.css';
+import BookingTable from '../../../components/BookingComponents/BookingTable';
 
 const messages = defineMessages({
   bookingOverviewPageTitle: {
