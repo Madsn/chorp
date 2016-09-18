@@ -17,7 +17,8 @@ import login from './login';
 import register from './register';
 import content from './content';
 import error from './error';
-import bookings from './bookings';
+import bookingOverview from './bookings/overview';
+import customerOverview from './customers/overview';
 
 export default {
 
@@ -29,7 +30,8 @@ export default {
     contact,
     login,
     register,
-    bookings,
+    bookingOverview,
+    customerOverview,
 
     // place new routes before...
     content,

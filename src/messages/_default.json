@@ -50,7 +50,7 @@
     "defaultMessage": "Bookings",
     "message": "",
     "files": [
-      "src/routes/bookings/Bookings.js"
+      "src/routes/bookings/overview/BookingOverview.js"
     ]
   },
   {
@@ -60,6 +60,24 @@
     "message": "",
     "files": [
       "src/components/Header/Header.js"
+    ]
+  },
+  {
+    "id": "customer.overview.viewCustomer",
+    "description": "Customer table link to view customer details",
+    "defaultMessage": "View Customer",
+    "message": "",
+    "files": [
+      "src/components/CustomerComponents/CustomerTable.js"
+    ]
+  },
+  {
+    "id": "customers.title",
+    "description": "Customers overview page title",
+    "defaultMessage": "Customers",
+    "message": "",
+    "files": [
+      "src/routes/customers/overview/CustomerOverview.js"
     ]
   }
 ]

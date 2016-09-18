@@ -71,7 +71,25 @@
     "defaultMessage": "Bookings",
     "message": "Bookinger",
     "files": [
-      "src/routes/bookings/Bookings.js"
+      "src/routes/bookings/overview/BookingOverview.js"
+    ]
+  },
+  {
+    "id": "customer.overview.viewCustomer",
+    "description": "Customer table link to view customer details",
+    "defaultMessage": "View Customer",
+    "message": "Vis Kunde",
+    "files": [
+      "src/components/CustomerComponents/CustomerTable.js"
+    ]
+  },
+  {
+    "id": "customers.title",
+    "description": "Customers overview page title",
+    "defaultMessage": "Customers",
+    "message": "Kunder",
+    "files": [
+      "src/routes/customers/overview/CustomerOverview.js"
     ]
   }
 ]
