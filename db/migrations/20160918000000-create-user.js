@@ -86,12 +86,12 @@ module.exports = {
         type: DataType.STRING(255),
       },
 
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: DataType.DATE,
       },
 
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: DataType.DATE,
       },
