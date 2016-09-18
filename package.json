@@ -43,6 +43,7 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "sequelize": "3.24.2",
+    "sequelize-cli": "^2.4.0",
     "source-map-support": "0.4.2",
     "sqlite3": "3.1.4",
     "universal-router": "1.2.2",
@@ -208,6 +209,7 @@
     "deploy": "babel-node tools/run deploy",
     "render": "babel-node tools/run render",
     "server:run": "babel-node tools/run start",
+    "sql": "%cd%/node_modules/.bin/sequelize.cmd",
     "start": "npm-run-all --parallel lint:watch test:watch server:run"
   }
 }
