@@ -2,23 +2,23 @@ module.exports = {
   up: queryInterface => {
     const currentDate = Date();
     return queryInterface.bulkInsert('Customer', [{
-      created_at: currentDate,
-      updated_at: currentDate,
+      createdAt: currentDate,
+      updatedAt: currentDate,
     }, {
-      created_at: currentDate,
-      updated_at: currentDate,
+      createdAt: currentDate,
+      updatedAt: currentDate,
     }, {
-      created_at: currentDate,
-      updated_at: currentDate,
+      createdAt: currentDate,
+      updatedAt: currentDate,
     }, {
-      created_at: currentDate,
-      updated_at: currentDate,
+      createdAt: currentDate,
+      updatedAt: currentDate,
     }, {
-      created_at: currentDate,
-      updated_at: currentDate,
+      createdAt: currentDate,
+      updatedAt: currentDate,
     }, {
-      created_at: currentDate,
-      updated_at: currentDate,
+      createdAt: currentDate,
+      updatedAt: currentDate,
     }], {});
   },
 
