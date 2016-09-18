@@ -24,7 +24,7 @@ const CustomerTable = (props) => (
           {props.rows.map(item => (
             <tr key={item.id}>
               <td>
-                <a href={`bookings/${item.id}`}>
+                <a href={`customers/${item.id}`}>
                   <FormattedMessage {...messages.customerTableViewCustomer}/>
                 </a>
               </td>
