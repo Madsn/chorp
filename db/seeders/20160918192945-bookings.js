@@ -8,8 +8,8 @@ module.exports = {
         customer: `Customer-${i}`,
         details: `Details-${i}`,
         status: `Status-${i}`,
-        created_at: currentDate,
-        updated_at: currentDate,
+        createdAt: currentDate,
+        updatedAt: currentDate,
       });
     }
     return queryInterface.bulkInsert('Booking', bookings, {});
