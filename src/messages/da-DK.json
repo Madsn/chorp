@@ -91,5 +91,14 @@
     "files": [
       "src/routes/customers/overview/CustomerOverview.js"
     ]
+  },
+  {
+    "id": "newbooking.title",
+    "description": "New bookings page title",
+    "defaultMessage": "New booking",
+    "message": "Ny booking",
+    "files": [
+      "src/routes/bookings/new/NewBooking.js"
+    ]
   }
 ]

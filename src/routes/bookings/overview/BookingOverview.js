@@ -30,7 +30,7 @@ function BookingOverview({bookings}, context) {
 
 BookingOverview.propTypes = {
   bookings: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     category: PropTypes.string.isRequired,
     customer: PropTypes.string.isRequired,
     details: PropTypes.string,
