@@ -1,14 +1,13 @@
 import {
   GraphQLObjectType as ObjectType,
-  GraphQLID as ID,
+  GraphQLInt as IntegerType,
   GraphQLString as StringType,
-  GraphQLNonNull as NonNull,
 } from 'graphql';
 
 const BookingType = new ObjectType({
   name: 'Booking',
   fields: {
-    id: { type: new NonNull(ID) },
+    id: { type: IntegerType },
     category: { type: StringType },
     customer: { type: StringType },
     details: { type: StringType },

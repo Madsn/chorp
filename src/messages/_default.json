@@ -81,6 +81,15 @@
     ]
   },
   {
+    "id": "newbooking.title",
+    "description": "New bookings page title",
+    "defaultMessage": "New booking",
+    "message": "",
+    "files": [
+      "src/routes/bookings/new/NewBooking.js"
+    ]
+  },
+  {
     "id": "bookings.details.title",
     "description": "Booking details page title",
     "defaultMessage": "Booking info",

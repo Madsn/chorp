@@ -19,6 +19,8 @@ import intl from './queries/intl';
 import booking from './queries/booking';
 import customer from './queries/customer';
 
+import createBooking from './mutations/createBooking';
+
 const schema = new Schema({
   query: new ObjectType({
     name: 'Query',
@@ -29,6 +31,12 @@ const schema = new Schema({
       intl,
       ...booking,
       customer,
+    },
+  }),
+  mutation: new ObjectType({
+    name: 'Mutation',
+    fields: {
+      createBooking,
     },
   }),
 });

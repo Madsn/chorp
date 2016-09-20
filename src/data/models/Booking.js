@@ -4,9 +4,10 @@ import Model from '../sequelize';
 const Booking = Model.define('Booking', {
 
   id: {
-    type: DataType.UUID,
-    defaultValue: DataType.UUIDV1,
+    allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
+    type: DataType.INTEGER,
   },
 
   category: {
