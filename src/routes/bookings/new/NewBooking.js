@@ -1,7 +1,10 @@
 import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
+import * as bookingActions from '../../../actions/bookingActions';
+import {navigate} from '../../../actions/route';
 import s from './NewBooking.css';
 import NewBookingForm from '../../../components/BookingComponents/NewBookingForm';
 
@@ -14,6 +17,32 @@ const messages = defineMessages({
 });
 
 class NewBooking extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      booking: {},
+    };
+    console.log(this.props);
+    this.saveCourse = this.saveCourse.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(event) {
+    const field = event.target.id;
+    const booking = this.state.booking;
+    booking[field] = event.target.value;
+    return this.setState({booking});
+  }
+
+  saveCourse(event) {
+    event.preventDefault();
+    console.log(this.props);
+    this.props.actions.createBooking(this.state.booking);
+    console.log(this.props);
+    this.props.navigate({pathname: '/bookings'});
+  }
+
   render() {
     this.context.setTitle(this.context.intl.formatMessage(messages.newBookingPageTitle));
 
@@ -23,7 +52,7 @@ class NewBooking extends React.Component {
           <h1 className={s.title}>
             <FormattedMessage {...messages.newBookingPageTitle}/>
           </h1>
-          <NewBookingForm/>
+          <NewBookingForm onSave={this.saveCourse} onChange={this.onChange}/>
         </div>
       </div>
     );
@@ -31,7 +60,8 @@ class NewBooking extends React.Component {
 }
 
 NewBooking.propTypes = {
-  // myProp: propTypes.array.isRequired
+  actions: PropTypes.object.isRequired,
+  navigate: PropTypes.func.isRequired,
 };
 
 NewBooking.contextTypes = {
@@ -40,10 +70,16 @@ NewBooking.contextTypes = {
 };
 
 
-function mapStateToProps(state) {
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
   return {
-    state: state,
+    actions: bindActionCreators(bookingActions, dispatch),
+    navigate,
   };
 }
 
-export default injectIntl(withStyles(s)(connect(mapStateToProps)(NewBooking)));
+
+export default injectIntl(withStyles(s)(connect(mapStateToProps, mapDispatchToProps)(NewBooking)));

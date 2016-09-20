@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {FormGroup, FormControl, HelpBlock, ControlLabel} from 'react-bootstrap';
+import {FormGroup, FormControl, HelpBlock, ControlLabel, ButtonToolbar, Button} from 'react-bootstrap';
 
 const FieldGroup = ({id, label, help, ...props}) => (
   <FormGroup controlId={id}>
@@ -16,21 +16,46 @@ FieldGroup.propTypes = {
 };
 
 
-const NewBookingForm = () => (
+const NewBookingForm = ({onSave, onChange}) => (
   <form>
     <FieldGroup
       id="category"
-      type="text"
       label="Category"
+      type="text"
       placeholder="Enter category"
+      onChange={onChange}
     />
     <FieldGroup
       id="customer"
+      label="Customer"
       type="text"
-      label="customer"
       placeholder="Enter name"
+      onChange={onChange}
     />
+    <FieldGroup
+      id="details"
+      label="Details"
+      type="text"
+      placeholder="Enter details"
+      onChange={onChange}
+    />
+    <FieldGroup
+      id="status"
+      label="Status"
+      type="text"
+      placeholder="Enter status"
+      onChange={onChange}
+    />
+    <ButtonToolbar>
+      <Button bsStyle="primary" onClick={onSave}>Save booking</Button>
+      <Button>Reset</Button>
+    </ButtonToolbar>
   </form>
 );
+
+NewBookingForm.propTypes = {
+  onSave: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default NewBookingForm;
