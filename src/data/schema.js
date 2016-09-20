@@ -27,7 +27,7 @@ const schema = new Schema({
       content,
       news,
       intl,
-      booking,
+      ...booking,
       customer,
     },
   }),

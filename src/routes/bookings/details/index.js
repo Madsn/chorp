@@ -1,12 +1,12 @@
 import React from 'react';
-import BookingOverview from './BookingOverview';
+import BookingDetails from './BookingDetails';
 import fetch from '../../../core/fetch';
 
 export default {
 
-  path: '/bookings',
+  path: '/bookings/:bookingId',
 
-  async action() {
+  async action(_, {bookingId}) {
     const resp = await fetch('/graphql', {
       method: 'post',
       headers: {
@@ -14,13 +14,13 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: '{bookings{id,category,customer,details,status}}',
+        query: `{booking(id:${bookingId}){id,category,customer,details,status}}`,
       }),
       credentials: 'include',
     });
     if (resp.status !== 200) throw new Error(resp.statusText);
     const {data} = await resp.json();
-    if (!data || !data.bookings) throw new Error('Failed to load the dashboard data.');
-    return <BookingOverview bookings={data.bookings}/>;
+    if (!data || !data.booking) throw new Error('Failed to load the booking data.');
+    return <BookingDetails booking={data.booking}/>;
   },
 };

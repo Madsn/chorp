@@ -79,5 +79,23 @@
     "files": [
       "src/routes/customers/overview/CustomerOverview.js"
     ]
+  },
+  {
+    "id": "bookings.details.title",
+    "description": "Booking details page title",
+    "defaultMessage": "Booking info",
+    "message": "",
+    "files": [
+      "src/routes/bookings/details/BookingDetails.js"
+    ]
+  },
+  {
+    "id": "bookings.table.viewBooking",
+    "description": "Bookings table view booking label",
+    "defaultMessage": "View Booking",
+    "message": "",
+    "files": [
+      "src/components/BookingComponents/BookingTable.js"
+    ]
   }
 ]
