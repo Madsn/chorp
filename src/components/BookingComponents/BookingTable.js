@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
 import BookingTableActionCol from './BookingTableActionCol';
 
@@ -50,7 +50,7 @@ const BookingTable = (props) => (
 );
 
 BookingTable.propTypes = {
-  rows: React.PropTypes.array.isRequired,
+  rows: PropTypes.array.isRequired,
 };
 
 export default injectIntl(BookingTable);
