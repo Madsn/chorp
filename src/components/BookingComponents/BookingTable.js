@@ -1,5 +1,14 @@
 import React from 'react';
+import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
 import BookingTableActionCol from './BookingTableActionCol';
+
+const messages = defineMessages({
+  bookingTableViewBooking: {
+    id: 'bookings.table.viewBooking',
+    defaultMessage: 'View Booking',
+    description: 'Bookings table view booking label',
+  },
+});
 
 const BookingTable = (props) => (
   <div>
@@ -21,7 +30,7 @@ const BookingTable = (props) => (
             <tr key={item.id}>
               <td>
                 <a href={`bookings/${item.id}`}>
-                  View booking
+                  <FormattedMessage {...messages.bookingTableViewBooking}/>
                 </a>
               </td>
               <td><span className="badge alert-success">{ item.category }</span></td>
@@ -44,4 +53,4 @@ BookingTable.propTypes = {
   rows: React.PropTypes.array.isRequired,
 };
 
-export default BookingTable;
+export default injectIntl(BookingTable);

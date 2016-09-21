@@ -13,7 +13,6 @@ const messages = defineMessages({
 });
 
 function CustomerOverview({customers}, context) {
-  console.log(customers);
   context.setTitle(context.intl.formatMessage(messages.customerOverviewPageTitle));
   return (
     <div className={s.root}>

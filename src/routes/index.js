@@ -20,6 +20,7 @@ import error from './error';
 import bookingOverview from './bookings/overview';
 import customerOverview from './customers/overview';
 import newBooking from './bookings/new';
+import bookingDetails from './bookings/details';
 
 export default {
 
@@ -34,6 +35,7 @@ export default {
     bookingOverview,
     customerOverview,
     newBooking,
+    bookingDetails,
 
     // place new routes before...
     content,

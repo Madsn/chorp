@@ -100,5 +100,23 @@
     "files": [
       "src/routes/bookings/new/NewBooking.js"
     ]
+  },
+  {
+    "id": "bookings.details.title",
+    "description": "Booking details page title",
+    "defaultMessage": "Booking info",
+    "message": "Reservation info",
+    "files": [
+      "src/routes/bookings/details/BookingDetails.js"
+    ]
+  },
+  {
+    "id": "bookings.table.viewBooking",
+    "description": "Bookings table view booking label",
+    "defaultMessage": "View Booking",
+    "message": "Vis reservation",
+    "files": [
+      "src/components/BookingComponents/BookingTable.js"
+    ]
   }
 ]
