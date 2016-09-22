@@ -1,12 +1,12 @@
 import React from 'react';
-import CustomerOverview from './CustomerOverview';
+import CustomerDetails from './CustomerDetails';
 import fetch from '../../../core/fetch';
 
 export default {
 
-  path: '/customers',
+  path: '/customers/:customerId',
 
-  async action() {
+  async action(_, {customerId}) {
     const resp = await fetch('/graphql', {
       method: 'post',
       headers: {
@@ -14,13 +14,13 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: '{customers{id}}',
+        query: `{customer(id:${customerId}){id}}`,
       }),
       credentials: 'include',
     });
     if (resp.status !== 200) throw new Error(resp.statusText);
     const {data} = await resp.json();
-    if (!data || !data.customers) throw new Error('Failed to load the customer data.');
-    return <CustomerOverview customers={data.customers}/>;
+    if (!data || !data.customer) throw new Error('Failed to load the customer data.');
+    return <CustomerDetails customer={data.customer}/>;
   },
 };

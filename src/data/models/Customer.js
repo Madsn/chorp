@@ -8,6 +8,21 @@ const Customer = Model.define('Customer', {
     defaultValue: DataType.UUIDV1,
     primaryKey: true,
   },
+  firstName: {
+    type: DataType.STRING(255),
+  },
+  lastName: {
+    type: DataType.STRING(255),
+  },
+  address: {
+    type: DataType.STRING(255),
+  },
+  phoneNumber: {
+    type: DataType.STRING(255),
+  },
+  email: {
+    type: DataType.STRING(255),
+  },
 });
 
 export default Customer;
