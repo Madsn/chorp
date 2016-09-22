@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
 import s from './BookingDetails.css';
+import BookingDetailsComponent from '../../../components/BookingComponents/BookingDetailsComponent';
+import CustomerDetailsComponent from '../../../components/CustomerComponents/CustomerDetailsComponent';
 
 const messages = defineMessages({
   bookingDetailsPageTitle: {
@@ -19,7 +21,12 @@ function BookingDetails({booking}, context) {
         <h1 className={s.title}>
           <FormattedMessage {...messages.bookingDetailsPageTitle}/>
         </h1>
-        {booking.id}
+        <div className="col-sm-6">
+          <BookingDetailsComponent booking={booking}/>
+        </div>
+        <div className="col-sm-6">
+          <CustomerDetailsComponent customer={booking.customer}/>
+        </div>
       </div>
     </div>
   );
