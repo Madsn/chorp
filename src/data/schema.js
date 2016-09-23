@@ -30,7 +30,7 @@ const schema = new Schema({
       news,
       intl,
       ...booking,
-      customer,
+      ...customer,
     },
   }),
   mutation: new ObjectType({

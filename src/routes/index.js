@@ -19,6 +19,7 @@ import content from './content';
 import error from './error';
 import bookingOverview from './bookings/overview';
 import customerOverview from './customers/overview';
+import customerDetails from './customers/details';
 import newBooking from './bookings/new';
 import bookingDetails from './bookings/details';
 
@@ -34,6 +35,7 @@ export default {
     register,
     bookingOverview,
     customerOverview,
+    customerDetails,
     newBooking,
     bookingDetails,
 

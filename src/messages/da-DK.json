@@ -118,5 +118,14 @@
     "files": [
       "src/components/BookingComponents/BookingTable.js"
     ]
+  },
+  {
+    "id": "customers.details.title",
+    "description": "Customers' Details page title",
+    "defaultMessage": "Customers' Details",
+    "message": "",
+    "files": [
+      "src/routes/customers/details/CustomerDetails.js"
+    ]
   }
 ]
