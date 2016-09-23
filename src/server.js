@@ -11,7 +11,6 @@ import 'babel-polyfill';
 import path from 'path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import requestLanguage from 'express-request-language';
 import bodyParser from 'body-parser';
 import expressJwt from 'express-jwt';
 import expressGraphQL from 'express-graphql';
@@ -19,22 +18,18 @@ import jwt from 'jsonwebtoken';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import UniversalRouter from 'universal-router';
+import createMemoryHistory from 'history/createMemoryHistory';
 import PrettyError from 'pretty-error';
-import './serverIntlPolyfill';
+import App from './components/App';
 import Html from './components/Html';
-import {ErrorPageWithoutStyle} from './routes/error/ErrorPage';
+import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
 import passport from './core/passport';
 import models from './data/models';
 import schema from './data/schema';
 import routes from './routes';
-import createHistory from './core/createHistory';
 import assets from './assets'; // eslint-disable-line import/no-unresolved
-import configureStore from './store/configureStore';
-import {setRuntimeVariable} from './actions/runtime';
-import Provide from './components/Provide';
-import {setLocale} from './actions/intl';
-import {port, auth, locales} from './config';
+import { port, auth } from './config';
 
 const app = express();
 
@@ -50,19 +45,7 @@ global.navigator.userAgent = global.navigator.userAgent || 'all';
 // -----------------------------------------------------------------------------
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
-app.use(requestLanguage({
-  languages: locales,
-  queryName: 'lang',
-  cookie: {
-    name: 'lang',
-    options: {
-      path: '/',
-      maxAge: 3650 * 24 * 3600 * 1000, // 10 years in miliseconds
-    },
-    url: '/lang/{language}',
-  },
-}));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //
@@ -76,14 +59,14 @@ app.use(expressJwt({
 app.use(passport.initialize());
 
 app.get('/login/facebook',
-  passport.authenticate('facebook', {scope: ['email', 'user_location'], session: false})
+  passport.authenticate('facebook', { scope: ['email', 'user_location'], session: false })
 );
 app.get('/login/facebook/return',
-  passport.authenticate('facebook', {failureRedirect: '/login', session: false}),
+  passport.authenticate('facebook', { failureRedirect: '/login', session: false }),
   (req, res) => {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
-    const token = jwt.sign(req.user, auth.jwt.secret, {expiresIn});
-    res.cookie('id_token', token, {maxAge: 1000 * expiresIn, httpOnly: true});
+    const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
+    res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
     res.redirect('/');
   }
 );
@@ -94,106 +77,49 @@ app.get('/login/facebook/return',
 app.use('/graphql', expressGraphQL(req => ({
   schema,
   graphiql: true,
-  rootValue: {request: req},
+  rootValue: { request: req },
   pretty: process.env.NODE_ENV !== 'production',
 })));
 
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
-app.get('*', async(req, res, next) => {
-  const history = createHistory(req.url);
-  // let currentLocation = history.getCurrentLocation();
-  let sent = false;
-  const removeHistoryListener = history.listen(location => {
-    const newUrl = `${location.pathname}${location.search}`;
-    if (req.originalUrl !== newUrl) {
-      // console.log(`R ${req.originalUrl} -> ${newUrl}`); // eslint-disable-line no-console
-      if (!sent) {
-        res.redirect(303, newUrl);
-        sent = true;
-        next();
-      } else {
-        console.error(`${req.path}: Already sent!`); // eslint-disable-line no-console
-      }
-    }
-  });
-
+app.get('*', async (req, res, next) => {
   try {
-    const store = configureStore({}, {
-      cookie: req.headers.cookie,
-      history,
-    });
+    const css = new Set();
 
-    store.dispatch(setRuntimeVariable({
-      name: 'initialNow',
-      value: Date.now(),
-    }));
-    let css = new Set();
-    let statusCode = 200;
-    const locale = req.language;
-    const data = {
-      lang: locale,
-      title: '',
-      description: '',
-      style: '',
-      script: assets.main.js,
-      children: '',
+    // Global (context) variables that can be easily accessed from any React component
+    // https://facebook.github.io/react/docs/context.html
+    const context = {
+      // Navigation manager, e.g. history.push('/home')
+      // https://github.com/mjackson/history
+      history: createMemoryHistory({
+        initialEntries: [req.url],
+      }),
+      // Enables critical path CSS rendering
+      // https://github.com/kriasoft/isomorphic-style-loader
+      insertCss: (...styles) => {
+        // eslint-disable-next-line no-underscore-dangle
+        styles.forEach(style => css.add(style._getCss()));
+      },
     };
 
-    store.dispatch(setRuntimeVariable({
-      name: 'availableLocales',
-      value: locales,
-    }));
-
-    await store.dispatch(setLocale({
-      locale,
-    }));
-
-    await UniversalRouter.resolve(routes, {
+    const route = await UniversalRouter.resolve(routes, {
       path: req.path,
       query: req.query,
-      context: {
-        store,
-        createHref: history.createHref,
-        insertCss: (...styles) => {
-          styles.forEach(style => css.add(style._getCss())); // eslint-disable-line no-underscore-dangle, max-len
-        },
-        setTitle: value => (data.title = value),
-        setMeta: (key, value) => (data[key] = value),
-      },
-      render(component, status = 200) {
-        css = new Set();
-        statusCode = status;
-
-        // Fire all componentWill... hooks
-        data.children = ReactDOM.renderToString(<Provide store={store}>{component}</Provide>);
-
-        // If you have async actions, wait for store when stabilizes here.
-        // This may be asynchronous loop if you have complicated structure.
-        // Then render again
-
-        // If store has no changes, you do not need render again!
-        // data.children = ReactDOM.renderToString(<Provide store={store}>{component}</Provide>);
-
-        // It is important to have rendered output and state in sync,
-        // otherwise React will write error to console when mounting on client
-        data.state = store.getState();
-
-        data.style = [...css].join('');
-        return true;
-      },
+      context,
     });
 
-    if (!sent) {
-      const html = ReactDOM.renderToStaticMarkup(<Html {...data}/>);
-      res.status(statusCode);
-      res.send(`<!doctype html>${html}`);
-    }
+    const data = { ...route };
+    data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
+    data.style = [...css].join('');
+    data.script = assets.main.js;
+    const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
+
+    res.status(route.status || 200);
+    res.send(`<!doctype html>${html}`);
   } catch (err) {
     next(err);
-  } finally {
-    removeHistoryListener();
   }
 });
 
@@ -206,17 +132,16 @@ pe.skipPackage('express');
 
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   console.log(pe.render(err)); // eslint-disable-line no-console
-  const statusCode = err.status || 500;
   const html = ReactDOM.renderToStaticMarkup(
     <Html
       title="Internal Server Error"
       description={err.message}
       style={errorPageStyle._getCss()} // eslint-disable-line no-underscore-dangle
     >
-    {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err}/>)}
+      {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />)}
     </Html>
   );
-  res.status(statusCode);
+  res.status(err.status || 500);
   res.send(`<!doctype html>${html}`);
 });
 
@@ -224,7 +149,9 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 // Launch the server
 // -----------------------------------------------------------------------------
 /* eslint-disable no-console */
-app.listen(port, () => {
-  console.log(`The server is running at http://localhost:${port}/`);
+models.sync().catch(err => console.error(err.stack)).then(() => {
+  app.listen(port, () => {
+    console.log(`The server is running at http://localhost:${port}/`);
+  });
 });
 /* eslint-enable no-console */
