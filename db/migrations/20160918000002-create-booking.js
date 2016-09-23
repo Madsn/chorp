@@ -1,30 +1,30 @@
 module.exports = {
-  up: (queryInterface, DataType) => queryInterface.createTable('Booking', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Booking', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataType.INTEGER,
+      type: Sequelize.INTEGER,
     },
     category: {
-      type: DataType.STRING,
+      type: Sequelize.STRING,
     },
     customer: {
-      type: DataType.STRING,
+      type: Sequelize.INTEGER,
     },
     details: {
-      type: DataType.STRING,
+      type: Sequelize.STRING,
     },
     status: {
-      type: DataType.STRING,
+      type: Sequelize.STRING,
     },
     createdAt: {
       allowNull: false,
-      type: DataType.DATE,
+      type: Sequelize.DATE,
     },
     updatedAt: {
       allowNull: false,
-      type: DataType.DATE,
+      type: Sequelize.DATE,
     },
   }),
   down: queryInterface => queryInterface.dropTable('Booking'),

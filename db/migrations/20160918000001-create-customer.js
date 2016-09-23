@@ -6,6 +6,21 @@ module.exports = {
       primaryKey: true,
       type: DataType.INTEGER,
     },
+    firstName: {
+      type: DataType.STRING(255),
+    },
+    lastName: {
+      type: DataType.STRING(255),
+    },
+    address: {
+      type: DataType.STRING(255),
+    },
+    phoneNumber: {
+      type: DataType.STRING(255),
+    },
+    email: {
+      type: DataType.STRING(255),
+    },
     createdAt: {
       allowNull: false,
       type: DataType.DATE,

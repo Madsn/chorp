@@ -2,10 +2,10 @@ module.exports = {
   up: queryInterface => {
     const currentDate = Date();
     const bookings = [];
-    for (let i = 0; i < 20; i += 1) {
+    for (let i = 1; i < 20; i += 1) {
       bookings.push({
         category: `Category-${i}`,
-        customer: `Customer-${i}`,
+        customer: `${i}`,
         details: `Details-${i}`,
         status: `Status-${i}`,
         createdAt: currentDate,
