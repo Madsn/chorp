@@ -6,6 +6,10 @@ module.exports = {
       primaryKey: true,
       type: DataType.INTEGER,
     },
+    name: {
+      allowNull: false,
+      type: DataType.STRING(255),
+    },
     createdAt: {
       allowNull: false,
       type: DataType.DATE,
