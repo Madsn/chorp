@@ -10,28 +10,22 @@
 import React, { PropTypes } from 'react';
 import { analytics } from '../config';
 
-function Html({ title, description, style, script, children, lang, state }) {
+function Html({ title, description, style, script, children }) {
   return (
-    <html className="no-js" lang={lang}>
+    <html className="no-js" lang="en">
       <head>
-        <meta charSet="utf-8"/>
-        <meta httpEquiv="x-ua-compatible" content="ie=edge"/>
+        <meta charSet="utf-8" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <title>{title}</title>
-        <meta name="description" content={description}/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-        <style id="css" dangerouslySetInnerHTML={{ __html: style }}/>
+        {style && <style id="css" dangerouslySetInnerHTML={{ __html: style }} />}
       </head>
       <body>
-        <div id="app" dangerouslySetInnerHTML={{ __html: children }}/>
-        {script && (
-          <script
-            id="source"
-            src={script}
-            data-initial-state={JSON.stringify(state)}
-          />
-        )}
+        <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
+        {script && <script src={script} />}
         {analytics.google.trackingId &&
           <script
             dangerouslySetInnerHTML={{ __html:
@@ -40,7 +34,7 @@ function Html({ title, description, style, script, children, lang, state }) {
           />
         }
         {analytics.google.trackingId &&
-          <script src="https://www.google-analytics.com/analytics.js" async defer/>
+          <script src="https://www.google-analytics.com/analytics.js" async defer />
         }
       </body>
     </html>
@@ -50,11 +44,9 @@ function Html({ title, description, style, script, children, lang, state }) {
 Html.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  style: PropTypes.string.isRequired,
+  style: PropTypes.string,
   script: PropTypes.string,
   children: PropTypes.string,
-  state: PropTypes.object.isRequired,
-  lang: PropTypes.string.isRequired,
 };
 
 export default Html;
