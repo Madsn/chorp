@@ -37,7 +37,10 @@ class NewBooking extends React.Component {
   saveCourse(event) {
     event.preventDefault();
     this.props.actions.createBooking(this.state.booking);
+    console.log('navigating to bookings page');
+    console.log(this.props.navigate);
     this.props.navigate({pathname: '/bookings'});
+    console.log('navigation run');
   }
 
   render() {
