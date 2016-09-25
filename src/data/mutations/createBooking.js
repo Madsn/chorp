@@ -20,9 +20,13 @@ const createBooking = {
       details,
       status,
     });
-    console.log(newBooking.id);
     const returnObj = {
-      booking: newBooking,
+      booking: {
+        category: newBooking.category,
+        customer: newBooking.customer,
+        details: newBooking.details,
+        status: newBooking.status,
+      },
     };
     console.log(returnObj);
     return returnObj;
