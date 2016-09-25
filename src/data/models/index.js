@@ -7,7 +7,6 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import sequelize from '../sequelize';
 import User from './User';
 import UserLogin from './UserLogin';
 import UserClaim from './UserClaim';
@@ -36,9 +35,4 @@ User.hasOne(UserProfile, {
   onDelete: 'cascade',
 });
 
-function sync(...args) {
-  return sequelize.sync(...args);
-}
-
-export default { sync };
 export { User, UserLogin, UserClaim, UserProfile, Booking, Customer };
