@@ -5,7 +5,7 @@ import Booking from '../models/Booking';
 const createBooking = {
   type: BookingType,
   fields: {
-    booking: {type: BookingType},
+    booking: {type: GraphQLString},
   },
   args: {
     category: {type: GraphQLString},
@@ -20,12 +20,7 @@ const createBooking = {
       details,
       status,
     });
-    console.log(newBooking.id);
-    const returnObj = {
-      booking: newBooking,
-    };
-    console.log(returnObj);
-    return returnObj;
+    return newBooking;
   },
 };
 

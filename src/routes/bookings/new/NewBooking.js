@@ -23,7 +23,6 @@ class NewBooking extends React.Component {
     this.state = {
       booking: {},
     };
-    console.log(this.props);
     this.saveCourse = this.saveCourse.bind(this);
     this.onChange = this.onChange.bind(this);
   }
@@ -37,10 +36,11 @@ class NewBooking extends React.Component {
 
   saveCourse(event) {
     event.preventDefault();
-    console.log(this.props);
     this.props.actions.createBooking(this.state.booking);
-    console.log(this.props);
+    console.log('navigating to bookings page');
+    console.log(this.props.navigate);
     this.props.navigate({pathname: '/bookings'});
+    console.log('navigation run');
   }
 
   render() {

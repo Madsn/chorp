@@ -16,17 +16,13 @@ export function createBooking(booking) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `mutation{createBooking(category:"${booking.category}",customer:"${booking.customer}",details:"${booking.details}",status:"${booking.status}"){id}}`,
+        query: `mutation{createBooking(category:"${booking.category}",customer:"${booking.customer}",details:"${booking.details}",status:"${booking.status}"){id,category,customer,details,status}}`,
       }),
       credentials: 'include',
     });
-    console.log(resp);
-    console.log(resp.status);
     if (resp.status !== 200) throw new Error(resp.errors);
     const {data} = await resp.json();
-    console.log(data);
-    if (!data || !data.booking) throw new Error('Failed to load the dashboard data. ');
-    console.log('dispatching success');
-    dispatch(createBookingSuccess(data.booking));
+    if (!data || !data.createBooking) throw new Error('Failed to load the booking data. ');
+    dispatch(createBookingSuccess(data.createBooking));
   };
 }
