@@ -7,6 +7,12 @@ export function createBookingSuccess(booking) {
   };
 }
 
+export function redirectToBookingDetails(bookingId) {
+  return (dispatch, _, {history}) => {
+    history.push(`/bookings/${bookingId}`);
+  };
+}
+
 export function createBooking(booking) {
   return async function (dispatch) {
     const resp = await fetch('/graphql', {
@@ -24,5 +30,6 @@ export function createBooking(booking) {
     const {data} = await resp.json();
     if (!data || !data.createBooking) throw new Error('Failed to load the booking data. ');
     dispatch(createBookingSuccess(data.createBooking));
+    dispatch(redirectToBookingDetails(data.createBooking.id));
   };
 }
