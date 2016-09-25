@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
 import * as bookingActions from '../../../actions/bookingActions';
-import {navigate} from '../../../actions/route';
 import s from './NewBooking.css';
 import NewBookingForm from '../../../components/BookingComponents/NewBookingForm';
 
@@ -23,6 +22,7 @@ class NewBooking extends React.Component {
     this.state = {
       booking: {},
     };
+
     this.saveCourse = this.saveCourse.bind(this);
     this.onChange = this.onChange.bind(this);
   }
@@ -37,10 +37,6 @@ class NewBooking extends React.Component {
   saveCourse(event) {
     event.preventDefault();
     this.props.actions.createBooking(this.state.booking);
-    console.log('navigating to bookings page');
-    console.log(this.props.navigate);
-    this.props.navigate({pathname: '/bookings'});
-    console.log('navigation run');
   }
 
   render() {
@@ -61,7 +57,6 @@ class NewBooking extends React.Component {
 
 NewBooking.propTypes = {
   actions: PropTypes.object.isRequired,
-  navigate: PropTypes.func.isRequired,
 };
 
 NewBooking.contextTypes = {
@@ -77,7 +72,6 @@ function mapStateToProps() {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(bookingActions, dispatch),
-    navigate,
   };
 }
 
