@@ -6,6 +6,9 @@ module.exports = {
       customers.push({
         firstName: `first-${i}`,
         lastName: `last-${i}`,
+        address: `address-${i}`,
+        phoneNumber: `${i}`,
+        email: `email-${i}`,
         createdAt: currentDate,
         updatedAt: currentDate,
       });

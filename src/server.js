@@ -25,7 +25,6 @@ import Html from './components/Html';
 import {ErrorPageWithoutStyle} from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
 import passport from './core/passport';
-import models from './data/models';
 import schema from './data/schema';
 import routes from './routes';
 import createHistory from './core/createHistory';
