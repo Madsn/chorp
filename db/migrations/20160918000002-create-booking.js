@@ -9,7 +9,7 @@ module.exports = {
     category: {
       type: Sequelize.STRING,
     },
-    customer: {
+    customerId: {
       type: Sequelize.INTEGER,
     },
     details: {

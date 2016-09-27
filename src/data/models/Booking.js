@@ -1,6 +1,5 @@
 import DataType from 'sequelize';
 import Model from '../sequelize';
-import Customer from './Customer';
 
 const Booking = Model.define('Booking', {
 
@@ -15,13 +14,8 @@ const Booking = Model.define('Booking', {
     type: DataType.STRING(255),
   },
 
-  customer: {
+  customerId: {
     type: DataType.INTEGER,
-    references: {
-      model: Customer,
-      key: 'id',
-      deferrable: DataType.Deferrable.INITIALLY_IMMEDIATE,
-    },
   },
 
   details: {

@@ -35,4 +35,10 @@ User.hasOne(UserProfile, {
   onDelete: 'cascade',
 });
 
+Booking.belongsTo(Customer, {
+  foreignKey: 'customerId',
+  onUpdate: 'cascade',
+  onDelete: 'cascade',
+});
+
 export { User, UserLogin, UserClaim, UserProfile, Booking, Customer };
