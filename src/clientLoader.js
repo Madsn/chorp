@@ -1,4 +1,6 @@
 
+// polyfills
+import 'babel-polyfill';
 import main from './client';
 
 function run() {
@@ -10,16 +12,20 @@ function run() {
   }
 }
 
-if (!global.Intl) {
+const needHeavyPolyfills = false;
+
+if (needHeavyPolyfills) {
+  // You can show loading banner here
+
   require.ensure([
-    'intl',
-    'intl/locale-data/jsonp/da.js',
-  ], require => {
-    require('intl');
-    require('intl/locale-data/jsonp/da.js');
+    // Add all large polyfills here
+  ], (require) => { // eslint-disable-line no-unused-vars
+    // and require them here
+    // require('intl');
+    // require('intl/locale-data/jsonp/en.js');
 
     run();
-  }, 'intl');
+  }, 'polyfills');
 } else {
   run();
 }
