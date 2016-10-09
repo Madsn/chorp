@@ -7,20 +7,11 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import Contact from './Contact';
+import { createStore, combineReducers } from 'redux';
 
-const title = 'Contact Us';
-
-export default {
-
-  path: '/contact',
-
-  action() {
-    return {
-      title,
-      component: <Contact title={title} />,
-    };
-  },
-
+const reducers = {
+  // TODO: Place your application store reducers here
+  // http://redux.js.org/docs/api/combineReducers
 };
+
+export default createStore.bind(undefined, combineReducers(reducers));

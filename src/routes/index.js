@@ -7,49 +7,44 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import App from '../components/App';
+/* eslint-disable global-require */
 
-// Child routes
-import home from './home';
-import contact from './contact';
-import login from './login';
-import register from './register';
-import content from './content';
-import error from './error';
-import bookingOverview from './bookings/overview';
-import customerOverview from './customers/overview';
-import customerDetails from './customers/details';
-import newBooking from './bookings/new';
-import bookingDetails from './bookings/details';
-
+// The top-level (parent) route
 export default {
 
   path: '/',
 
-  // keep in mind, routes are evaluated in order
+  // Keep in mind, routes are evaluated in order
   children: [
-    home,
-    contact,
-    login,
-    register,
-    bookingOverview,
-    customerOverview,
-    customerDetails,
-    newBooking,
-    bookingDetails,
+    require('./home').default,
+    require('./contact').default,
+    require('./login').default,
+    require('./register').default,
+    require('./bookings/overview').default,
+    require('./bookings/new').default,
+    require('./bookings/details').default,
+    require('./customers/overview').default,
+    require('./customers/details').default,
 
     // place new routes before...
-    content,
-    error,
+    require('./content').default,
+    require('./notFound').default,
   ],
 
-  async action({ next, render, context }) {
-    const component = await next();
-    if (component === undefined) return component;
-    return render(
-      <App context={context}>{component}</App>
-    );
+  async action({ next }) {
+    let route;
+
+    // Execute each child route until one of them return the result
+    // TODO: move this logic to the `next` function
+    do {
+      route = await next();
+    } while (!route);
+
+    // Provide default values for title, description etc.
+    route.title = `${route.title || 'Untitled Page'} - www.reactstarterkit.com`;
+    route.description = route.description || '';
+
+    return route;
   },
 
 };

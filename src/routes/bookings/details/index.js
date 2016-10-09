@@ -2,6 +2,8 @@ import React from 'react';
 import BookingDetails from './BookingDetails';
 import fetch from '../../../core/fetch';
 
+const title = 'Placeholder';
+
 export default {
 
   path: '/bookings/:bookingId',
@@ -21,6 +23,9 @@ export default {
     if (resp.status !== 200) throw new Error(resp.statusText);
     const {data} = await resp.json();
     if (!data || !data.booking) throw new Error('Failed to load the booking data.');
-    return <BookingDetails booking={data.booking}/>;
+    return {
+      title,
+      component: <BookingDetails booking={data.booking} title={title}/>,
+    };
   },
 };

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
 import * as bookingActions from '../../../actions/bookingActions';
+import Layout from '../../../components/Layout';
 import s from './NewBooking.css';
 import NewBookingForm from '../../../components/BookingComponents/NewBookingForm';
 
@@ -40,27 +41,27 @@ class NewBooking extends React.Component {
   }
 
   render() {
-    this.context.setTitle(this.context.intl.formatMessage(messages.newBookingPageTitle));
-
     return (
-      <div className={s.root}>
-        <div className={s.container}>
-          <h1 className={s.title}>
-            <FormattedMessage {...messages.newBookingPageTitle}/>
-          </h1>
-          <NewBookingForm onSave={this.saveCourse} onChange={this.onChange}/>
+      <Layout>
+        <div className={s.root}>
+          <div className={s.container}>
+            <h1 className={s.title}>
+              {this.props.title}
+            </h1>
+            <NewBookingForm onSave={this.saveCourse} onChange={this.onChange}/>
+          </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }
 
 NewBooking.propTypes = {
   actions: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 NewBooking.contextTypes = {
-  setTitle: PropTypes.func.isRequired,
   intl: PropTypes.object,
 };
 

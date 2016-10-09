@@ -2,6 +2,8 @@ import React from 'react';
 import CustomerOverview from './CustomerOverview';
 import fetch from '../../../core/fetch';
 
+const title = 'Placeholder';
+
 export default {
 
   path: '/customers',
@@ -21,6 +23,9 @@ export default {
     if (resp.status !== 200) throw new Error(resp.statusText);
     const {data} = await resp.json();
     if (!data || !data.customers) throw new Error('Failed to load the customer data.');
-    return <CustomerOverview customers={data.customers}/>;
+    return {
+      title,
+      component: <CustomerOverview customers={data.customers} title={title}/>,
+    };
   },
 };

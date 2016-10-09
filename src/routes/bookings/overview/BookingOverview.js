@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
 import s from './BookingOverview.css';
+import Layout from '../../../components/Layout';
 import BookingTable from '../../../components/BookingComponents/BookingTable';
 
 const messages = defineMessages({
@@ -12,19 +13,20 @@ const messages = defineMessages({
   },
 });
 
-function BookingOverview({bookings}, context) {
-  context.setTitle(context.intl.formatMessage(messages.bookingOverviewPageTitle));
+function BookingOverview({bookings}) {
   return (
-    <div className={s.root}>
-      <div className={s.container}>
-        <h1 className={s.title}>
-          <FormattedMessage {...messages.bookingOverviewPageTitle}/>
-        </h1>
-        <BookingTable
-          rows={bookings}
-        />
+    <Layout>
+      <div className={s.root}>
+        <div className={s.container}>
+          <h1 className={s.title}>
+            <FormattedMessage {...messages.bookingOverviewPageTitle}/>
+          </h1>
+          <BookingTable
+            rows={bookings}
+          />
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
@@ -36,9 +38,9 @@ BookingOverview.propTypes = {
     details: PropTypes.string,
     status: PropTypes.string,
   })).isRequired,
+  title: PropTypes.string.isRequired,
 };
 BookingOverview.contextTypes = {
-  setTitle: PropTypes.func.isRequired,
   intl: PropTypes.object,
 };
 

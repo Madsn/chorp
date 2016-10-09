@@ -5,14 +5,18 @@ import {connect} from 'react-redux';
 import {setLocale} from '../../actions/intl';
 
 function LanguageSwitcher({currentLocale, availableLocales, setLocale}) {
-  const isSelected = locale => locale === currentLocale;
-  if (availableLocales.length > 1) {
+  const isSelected = (locale) => locale === currentLocale;
+  const localeDict = {
+    'da-DK': 'Dansk',
+  };
+  const localeName = (locale) => localeDict[locale] || locale;
+  if (localeDict.length > 0) {
     return (
       <div>
         {availableLocales.map(locale => (
           <span key={locale}>
           {isSelected(locale) ? (
-            <span>{locale}</span>
+            <span>{localeName(locale)}</span>
           ) : (
             <a
               href={`?lang=${locale}`}
@@ -20,15 +24,16 @@ function LanguageSwitcher({currentLocale, availableLocales, setLocale}) {
                 setLocale({locale});
                 e.preventDefault();
               }}
-            >{locale}</a>
+            >{localeName(locale)}</a>
           )}
             {' '}
-          </span>
+        </span>
         ))}
       </div>
     );
+  } else {
+    return <div/>;
   }
-  return <div/>;
 }
 
 LanguageSwitcher.propTypes = {
@@ -37,9 +42,13 @@ LanguageSwitcher.propTypes = {
   setLocale: PropTypes.func.isRequired,
 };
 
-export default connect(state => ({
+const mapState = (state) => ({
   availableLocales: state.runtime.availableLocales,
   currentLocale: state.intl.locale,
-}), {
+});
+
+const mapDispatch = {
   setLocale,
-})(LanguageSwitcher);
+};
+
+export default connect(mapState, mapDispatch)(LanguageSwitcher);

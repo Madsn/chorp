@@ -1,4 +1,6 @@
 
+// polyfills
+import 'babel-polyfill';
 import main from './client';
 
 function run() {
@@ -11,15 +13,19 @@ function run() {
 }
 
 if (!global.Intl) {
+  // You can show loading banner here
+
   require.ensure([
+    // Add all large polyfills here
     'intl',
     'intl/locale-data/jsonp/da.js',
   ], require => {
+    // and require them here
     require('intl');
     require('intl/locale-data/jsonp/da.js');
 
     run();
-  }, 'intl');
+  }, 'polyfills');
 } else {
   run();
 }
