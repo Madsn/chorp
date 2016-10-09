@@ -20,6 +20,11 @@ export default {
     require('./contact').default,
     require('./login').default,
     require('./register').default,
+    require('./bookings/overview').default,
+    require('./bookings/new').default,
+    require('./bookings/details').default,
+    require('./customers/overview').default,
+    require('./customers/details').default,
 
     // place new routes before...
     require('./content').default,

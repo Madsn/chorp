@@ -2,6 +2,8 @@ import React from 'react';
 import BookingOverview from './BookingOverview';
 import fetch from '../../../core/fetch';
 
+const title = 'Placeholder';
+
 export default {
 
   path: '/bookings',
@@ -21,6 +23,9 @@ export default {
     if (resp.status !== 200) throw new Error(resp.statusText);
     const {data} = await resp.json();
     if (!data || !data.bookings) throw new Error('Failed to load the dashboard data.');
-    return <BookingOverview bookings={data.bookings}/>;
+    return {
+      title,
+      component: <BookingOverview bookings={data.bookings} title={title}/>,
+    };
   },
 };

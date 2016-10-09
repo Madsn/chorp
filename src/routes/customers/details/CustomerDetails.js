@@ -3,6 +3,7 @@ import objectAssign from 'object-assign';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
 import s from './CustomerDetails.css';
+import Layout from '../../../components/Layout';
 
 const messages = defineMessages({
   customerDetailsPageTitle: {
@@ -23,20 +24,23 @@ class CustomerDetails extends React.Component {
 
   render() {
     return (
-      <div className={s.root}>
-        <div className={s.container}>
-          <h1 className={s.title}>
-            <FormattedMessage {...messages.customerDetailsPageTitle}/>
-          </h1>
+      <Layout>
+        <div className={s.root}>
+          <div className={s.container}>
+            <h1 className={s.title}>
+              <FormattedMessage {...messages.customerDetailsPageTitle}/>
+            </h1>
 
+          </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }
 
 CustomerDetails.propTypes = {
   customer: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default injectIntl(withStyles(s)(CustomerDetails));

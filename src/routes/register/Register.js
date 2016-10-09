@@ -12,10 +12,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import s from './Register.css';
 
-const title = 'New User Registration';
-
-function Register(props, context) {
-  context.setTitle(title);
+function Register({ title }) {
   return (
     <Layout>
       <div className={s.root}>
@@ -28,6 +25,6 @@ function Register(props, context) {
   );
 }
 
-Register.contextTypes = { setTitle: PropTypes.func.isRequired };
+Register.propTypes = { title: PropTypes.string.isRequired };
 
 export default withStyles(s)(Register);

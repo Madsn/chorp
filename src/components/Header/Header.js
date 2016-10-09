@@ -8,11 +8,11 @@
  */
 
 import React from 'react';
-import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import s from './Header.css';
 import {Navbar} from 'react-bootstrap';
 import Link from '../Link';
-import s from './Header.css';
 import Navigation from '../Navigation';
 import LanguageSwitcher from '../LanguageSwitcher';
 import logoUrl from './logo-small.png';
