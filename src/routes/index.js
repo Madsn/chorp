@@ -20,6 +20,7 @@ export default {
     require('./contact').default,
     require('./login').default,
     require('./register').default,
+    require('./admin').default,
     require('./bookings/overview').default,
     require('./bookings/new').default,
     require('./bookings/details').default,

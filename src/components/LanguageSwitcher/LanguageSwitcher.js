@@ -10,24 +10,24 @@ function LanguageSwitcher({currentLocale, availableLocales, setLocale}) {
     'da-DK': 'Dansk',
   };
   const localeName = (locale) => localeDict[locale] || locale;
-  if (localeDict.length > 0) {
+  if (localeDict.length > 1) {
     return (
       <div>
         {availableLocales.map(locale => (
           <span key={locale}>
-          {isSelected(locale) ? (
-            <span>{localeName(locale)}</span>
-          ) : (
-            <a
-              href={`?lang=${locale}`}
-              onClick={(e) => {
-                setLocale({locale});
-                e.preventDefault();
-              }}
-            >{localeName(locale)}</a>
-          )}
+            {isSelected(locale) ? (
+              <span>{localeName(locale)}</span>
+            ) : (
+              <a
+                href={`?lang=${locale}`}
+                onClick={(e) => {
+                  setLocale({locale});
+                  e.preventDefault();
+                }}
+              >{localeName(locale)}</a>
+            )}
             {' '}
-        </span>
+          </span>
         ))}
       </div>
     );
