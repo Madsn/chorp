@@ -14,7 +14,7 @@ export function redirectToBookingDetails(bookingId) {
 }
 
 export function createBooking(booking) {
-  return async function (dispatch) {
+  return async (dispatch) => {
     const resp = await fetch('/graphql', {
       method: 'post',
       headers: {

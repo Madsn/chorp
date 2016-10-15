@@ -5,7 +5,7 @@ module.exports = {
     for (let i = 1; i < 20; i += 1) {
       bookings.push({
         category: `Category-${i}`,
-        customer: `${i}`,
+        customerId: `${i}`,
         details: `Details-${i}`,
         status: `Status-${i}`,
         createdAt: currentDate,

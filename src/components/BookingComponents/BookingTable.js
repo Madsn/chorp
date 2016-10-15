@@ -34,7 +34,7 @@ const BookingTable = (props) => (
                 </a>
               </td>
               <td><span className="badge alert-success">{ item.category }</span></td>
-              <td>{ item.customer }</td>
+              <td>{ item.customerId }</td>
               <td>{ item.details }</td>
               <td><span className="text-info">{ item.status }</span></td>
               <td>
