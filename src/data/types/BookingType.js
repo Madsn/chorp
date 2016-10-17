@@ -9,7 +9,7 @@ const BookingType = new ObjectType({
   fields: {
     id: { type: IntegerType },
     category: { type: StringType },
-    customer: { type: StringType },
+    customerId: { type: IntegerType },
     details: { type: StringType },
     status: { type: StringType },
   },
