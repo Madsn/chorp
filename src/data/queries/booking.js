@@ -1,4 +1,4 @@
-import {GraphQLList, GraphQLInt, GraphQLNonNull} from 'graphql';
+import { GraphQLList, GraphQLInt, GraphQLNonNull } from 'graphql';
 import BookingType from '../types/BookingType';
 import Booking from '../models/Booking';
 
@@ -12,9 +12,9 @@ const booking = {
   booking: {
     type: BookingType,
     args: {
-      id: {type: new GraphQLNonNull(GraphQLInt)},
+      id: { type: new GraphQLNonNull(GraphQLInt) },
     },
-    resolve(_, {id}) {
+    resolve(_, { id }) {
       return Booking.findById(id);
     },
   },

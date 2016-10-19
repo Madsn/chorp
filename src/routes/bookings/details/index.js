@@ -16,16 +16,16 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{booking(id:${bookingId}){id,category,customer,details,status}}`,
+        query: `{booking(id:${bookingId}){id,category,customerId,details,status}}`,
       }),
       credentials: 'include',
     });
     if (resp.status !== 200) throw new Error(resp.statusText);
-    const {data} = await resp.json();
+    const { data } = await resp.json();
     if (!data || !data.booking) throw new Error('Failed to load the booking data.');
     return {
       title,
-      component: <BookingDetails booking={data.booking} title={title}/>,
+      component: <BookingDetails booking={data.booking} title={title} />,
     };
   },
 };

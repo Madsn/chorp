@@ -10,7 +10,7 @@ export default {
   async action() {
     return {
       title,
-      component: <NewBooking title={title}/>,
+      component: <NewBooking title={title} />,
     };
   },
 };

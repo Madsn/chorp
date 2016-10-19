@@ -1,3 +1,4 @@
+// @flow
 import {
   GraphQLString,
   GraphQLInt,

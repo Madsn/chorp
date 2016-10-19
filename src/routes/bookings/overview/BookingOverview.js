@@ -34,7 +34,7 @@ BookingOverview.propTypes = {
   bookings: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     category: PropTypes.string.isRequired,
-    customer: PropTypes.string.isRequired,
+    customerId: PropTypes.number.isRequired,
     details: PropTypes.string,
     status: PropTypes.string,
   })).isRequired,

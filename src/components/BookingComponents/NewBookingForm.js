@@ -26,7 +26,7 @@ const NewBookingForm = ({onSave, onChange}) => (
       onChange={onChange}
     />
     <FieldGroup
-      id="customer"
+      id="customerId"
       label="Customer"
       type="text"
       placeholder="Enter name"

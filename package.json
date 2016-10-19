@@ -82,6 +82,7 @@
     "eslint-plugin-react": "^6.3.0",
     "extend": "^3.0.0",
     "file-loader": "^0.9.0",
+    "flow-bin": "^0.33.0",
     "gaze": "^1.1.1",
     "git-repository": "^0.1.4",
     "glob": "^7.1.0",
@@ -192,6 +193,7 @@
     "sql": "%cd%/node_modules/.bin/sequelize.cmd",
     "seed": "npm run sql -- db:seed:all",
     "migrate": "npm run sql -- db:migrate",
-    "start": "npm-run-all --parallel lint:watch test:watch server:run"
+    "start": "npm-run-all --parallel lint:watch test:watch server:run",
+    "flow": "flow check || exit 0"
   }
 }
