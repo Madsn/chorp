@@ -1,7 +1,11 @@
 [ignore]
 .*/build
 .*/config
-.*/node_modules
 .*/gulpfile.js
+.*/node_modules/fbjs/*
+.*/node_modules/systemjs-builder/test/*
 
 [include]
+
+[options]
+module.system.node.resolve_dirname=node_modules

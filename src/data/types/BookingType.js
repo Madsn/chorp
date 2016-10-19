@@ -1,3 +1,4 @@
+// @flow
 import {
   GraphQLObjectType as ObjectType,
   GraphQLInt as IntegerType,

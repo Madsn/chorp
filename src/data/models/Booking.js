@@ -1,3 +1,4 @@
+// @flow
 import DataType from 'sequelize';
 import Model from '../sequelize';
 
