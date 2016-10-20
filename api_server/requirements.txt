@@ -4,4 +4,3 @@ django-filter==0.15.3
 django-guardian==1.4.6
 djangorestframework==3.4.7
 Markdown==2.6.7
-PyYAML==3.12
