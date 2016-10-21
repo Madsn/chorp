@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+import graphene
 
 
 def date_str(o):
@@ -53,3 +54,21 @@ class Booking(models.Model):
     class Meta:
         ordering = ('checkin_date', 'checkout_date',)
 
+
+from graphene_django import DjangoObjectType
+
+
+class UserGraphql(DjangoObjectType):
+    class Meta:
+        model = User
+
+
+class Query(graphene.ObjectType):
+    users = graphene.List(UserGraphql)
+
+    @graphene.resolve_only_args
+    def resolve_users(self):
+        return User.objects.all()
+
+
+schema = graphene.Schema(query=Query)
