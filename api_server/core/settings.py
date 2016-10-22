@@ -44,10 +44,7 @@ INSTALLED_APPS = [
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'km_api.models.schema',
-    'MIDDLEWARE': (
-        'graphene_django.debug.DjangoDebugMiddleware',
-    )
+    'SCHEMA': 'km_api.schema.schema',
 }
 
 MIDDLEWARE = [

@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
+from graphene_django import DjangoObjectType
 import graphene
+import datetime
 
 
 def date_str(o):
@@ -28,7 +29,7 @@ class PetType(models.Model):
 
 class Pet(models.Model):
     name = models.CharField(max_length=50, blank=False, default='No-name')
-    owner = models.ForeignKey
+    owner = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     type = models.ForeignKey(PetType, null=True, on_delete=models.SET_NULL)
     created = models.DateTimeField()
 
@@ -53,22 +54,3 @@ class Booking(models.Model):
 
     class Meta:
         ordering = ('checkin_date', 'checkout_date',)
-
-
-from graphene_django import DjangoObjectType
-
-
-class UserGraphql(DjangoObjectType):
-    class Meta:
-        model = User
-
-
-class Query(graphene.ObjectType):
-    users = graphene.List(UserGraphql)
-
-    @graphene.resolve_only_args
-    def resolve_users(self):
-        return User.objects.all()
-
-
-schema = graphene.Schema(query=Query)
