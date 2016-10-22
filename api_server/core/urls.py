@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers, serializers, viewsets
+from graphene_django.views import GraphQLView
 from users import views
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -28,6 +29,8 @@ router.register(r'groups', views.GroupViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    url(r'^graphql', GraphQLView.as_view(graphiql=True)),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),
