@@ -39,12 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'graphene_django',
-    'km_api',
+    'chorp_api',
     'users',
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'km_api.schema.schema',
+    'SCHEMA': 'chorp_api.schema.schema',
 }
 
 MIDDLEWARE = [

@@ -1,4 +1,4 @@
-from graphene import ObjectType, relay
+from graphene import ObjectType, relay, AbstractType
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from django.contrib.auth.models import User
@@ -11,6 +11,7 @@ class UserNode(DjangoObjectType):
     class Meta:
         model = User
         interfaces = (relay.Node,)
+        filter_fields = ['id', 'username']
 
 
 class BookingNode(DjangoObjectType):
@@ -33,20 +34,39 @@ class PetTypeNode(DjangoObjectType):
         filter_order_by = ['name']
 
 
-class Query(ObjectType):
+class UserQueries(AbstractType):
     user = relay.Node.Field(UserNode)
     users = DjangoFilterConnectionField(UserNode)
+
+    @staticmethod
+    def resolve_users(self, args, context, info):
+        if not context.user.is_authenticated():
+            return User.objects.none()
+        elif context.user.has_perm('chorp.admin'):
+            return User.objects.all()
+        else:
+            return User.objects.filter(id=context.user.id)
+
+
+class PetQueries(AbstractType):
     pet_type = relay.Node.Field(PetTypeNode)
     pet_types = DjangoFilterConnectionField(PetTypeNode)
+
     pet = relay.Node.Field(PetNode)
     pets = DjangoFilterConnectionField(PetNode)
+
+
+class BookingQueries(AbstractType):
     booking = relay.Node.Field(BookingNode)
     bookings = DjangoFilterConnectionField(BookingNode)
+
+
+class Queries(UserQueries, PetQueries, BookingQueries, ObjectType):
     node = relay.Node.Field()
     debug = graphene.Field(DjangoDebug, name='__debug')
 
 
-schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=Queries)
 
 '''
 Sample queries.
