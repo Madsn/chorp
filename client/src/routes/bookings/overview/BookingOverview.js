@@ -32,11 +32,13 @@ function BookingOverview({bookings}) {
 
 BookingOverview.propTypes = {
   bookings: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    category: PropTypes.string.isRequired,
-    customerId: PropTypes.number.isRequired,
-    details: PropTypes.string,
-    status: PropTypes.string,
+    node: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      details: PropTypes.string.isRequired,
+      petOwner: PropTypes.object.isRequired,
+      checkinDate: PropTypes.date,
+      checkoutDate: PropTypes.date,
+    })
   })).isRequired,
   title: PropTypes.string.isRequired,
 };

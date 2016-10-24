@@ -23,7 +23,8 @@ function localUrl(url) {
     return url;
   }
 
-  return `http://${host}${url}`;
+  //return `http://${host}${url}`;
+  return `http://localhost:8000${url}`;
 }
 
 function localFetch(url, options) {

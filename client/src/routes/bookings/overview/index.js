@@ -16,16 +16,34 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: '{bookings{id,category,customerId,details,status}}',
+        query: `{
+          bookings {
+            edges {
+              node {
+                id,
+                details,
+                checkinDate,
+                checkoutDate,
+                petOwner {
+                  username
+                }
+              }
+            }
+          }
+        }`,
       }),
       credentials: 'include',
     });
     if (resp.status !== 200) throw new Error(resp.statusText);
-    const { data } = await resp.json();
-    if (!data || !data.bookings) throw new Error('Failed to load the dashboard data.');
+    const {data} = await resp.json();
+    console.log('Data:');
+    console.log(data);
+    console.log(data.bookings.edges);
+    console.log(data.bookings.edges[0].node.petOwner)
+    if (!data || !data.bookings || !data.bookings.edges) throw new Error('Failed to load the dashboard data.');
     return {
       title,
-      component: <BookingOverview bookings={data.bookings} title={title} />,
+      component: <BookingOverview bookings={data.bookings.edges} title={title}/>,
     };
   },
 };

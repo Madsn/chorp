@@ -27,18 +27,18 @@ const BookingTable = (props) => (
           </thead>
           <tbody>
           {props.rows.map(item => (
-            <tr key={item.id}>
+            <tr key={item.node.id}>
               <td>
-                <a href={`bookings/${item.id}`}>
+                <a href={`bookings/${item.node.id}`}>
                   <FormattedMessage {...messages.bookingTableViewBooking}/>
                 </a>
               </td>
-              <td><span className="badge alert-success">{ item.category }</span></td>
-              <td>{ item.customerId }</td>
-              <td>{ item.details }</td>
-              <td><span className="text-info">{ item.status }</span></td>
+              <td>{ item.node.details }</td>
+              <td>{ item.node.petOwner.username }</td>
+              <td>{ item.node.checkinDate }</td>
+              <td><span className="text-info">{ item.node.checkoutDate }</span></td>
               <td>
-                <BookingTableActionCol item={item}/>
+                <BookingTableActionCol item={item.node}/>
               </td>
             </tr>
           ))}
