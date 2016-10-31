@@ -67,6 +67,7 @@ class Task(models.Model):
     assignee = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_created=True)
     due_date = models.DateField()
+    models.BigIntegerField
 
     def __str__(self):
         return self.description

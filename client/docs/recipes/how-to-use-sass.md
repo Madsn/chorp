@@ -18,7 +18,7 @@ $ npm install sass-loader --save-dev
 
 ### Step 2
 
-Update [`webpack.config.js`](../../tools/webpack.config.js) file to use `sass-loader` for `.scss` files:
+Update [`webpack.config.js`](../../webpack.config.js) file to use `sass-loader` for `.scss` files:
 
 ```js
 const config = {
@@ -29,8 +29,8 @@ const config = {
       {
         test: /\.scss$/,
         loaders: [
-          'isomorphic-style-loader',
-          `css-loader?${JSON.stringify({ sourceMap: DEBUG, minimize: !DEBUG })}`,
+          'style-loader',
+          `css-loader?${JSON.stringify({ sourceMap: isDebug, minimize: !isDebug })}`,
           'postcss-loader?pack=sass',
           'sass-loader',
         ],
