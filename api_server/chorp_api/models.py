@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from graphene_django import DjangoObjectType
-import graphene
 import datetime
 
 
@@ -54,3 +52,25 @@ class Booking(models.Model):
 
     class Meta:
         ordering = ('checkin_date', 'checkout_date',)
+
+
+class Task(models.Model):
+    status_types = (
+        (0, 'Todo'),
+        (1, 'Doing'),
+        (2, 'Done')
+    )
+
+    description = models.CharField(max_length=50, blank=False)
+    details = models.CharField(max_length=500, blank=True)
+    status = models.IntegerField(null=False, default=0, choices=status_types)
+    assignee = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    created = models.DateTimeField(auto_created=True)
+    due_date = models.DateField()
+    models.BigIntegerField
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        ordering = ('due_date', 'created')
