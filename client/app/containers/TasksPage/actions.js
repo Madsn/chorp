@@ -6,7 +6,8 @@
 
 import {
   DEFAULT_ACTION,
-  ADD_TASK_ACTION
+  ADD_TASK_ACTION,
+  REMOVE_TASK_ACTION
 } from './constants';
 
 export function defaultAction() {
@@ -19,5 +20,12 @@ export function addTask(task) {
   return {
     type: ADD_TASK_ACTION,
     task
+  };
+}
+
+export function removeTask(key) {
+  return {
+    type: REMOVE_TASK_ACTION,
+    key
   };
 }
