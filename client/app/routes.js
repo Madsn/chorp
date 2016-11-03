@@ -47,6 +47,26 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+      path: '/tasks',
+      name: 'tasksPage',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/TasksPage/reducer'),
+          System.import('containers/TasksPage/sagas'),
+          System.import('containers/TasksPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('tasksPage', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
