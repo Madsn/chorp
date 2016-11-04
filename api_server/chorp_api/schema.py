@@ -1,4 +1,4 @@
-from graphene import ObjectType, relay, AbstractType
+from graphene import ObjectType, relay, AbstractType, Mutation
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from django.contrib.auth.models import User
@@ -77,7 +77,26 @@ class Queries(UserQueries, PetQueries, BookingQueries, TaskQueries, ObjectType):
     debug = graphene.Field(DjangoDebug, name='__debug')
 
 
-schema = graphene.Schema(query=Queries)
+class CreateTask(Mutation):
+    class Input:
+        title = graphene.String()
+        description = graphene.String()
+
+    ok = graphene.Boolean()
+    task = graphene.Field(TaskNode)
+
+    @classmethod
+    def mutate(self, args, context, info, fifth):
+        task = Task(title=context.get('title'), description=context.get('description'))
+        ok = True
+        return CreateTask(task=task, ok=ok)
+
+
+class Mutations(ObjectType):
+    create_task = CreateTask.Field()
+
+
+schema = graphene.Schema(query=Queries, mutation=Mutations)
 
 '''
 Sample queries.

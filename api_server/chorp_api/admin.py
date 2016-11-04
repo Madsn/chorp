@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pet, PetType, Booking
+from .models import Pet, PetType, Booking, Task
 
 
 @admin.register(Pet)
@@ -14,4 +14,9 @@ class PetType(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
     pass
