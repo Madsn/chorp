@@ -1,1 +1,1 @@
-ENV\Scripts\activate.bat
+workon chorp

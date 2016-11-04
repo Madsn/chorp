@@ -1,2 +1,2 @@
-virtualenv ENV
-ENV\Scripts\activate.bat
+mkvirtualenv chorp
+setprojectdir .
