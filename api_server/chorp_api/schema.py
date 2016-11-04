@@ -3,7 +3,7 @@ from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from django.contrib.auth.models import User
 import graphene
-from .models import Booking, Pet, PetType
+from .models import Booking, Pet, PetType, Task
 from graphene_django.debug import DjangoDebug
 
 
@@ -34,6 +34,17 @@ class PetTypeNode(DjangoObjectType):
         filter_order_by = ['name']
 
 
+class TaskNode(DjangoObjectType):
+    class Meta:
+        model = Task
+        interfaces = (relay.Node, )
+
+
+class TaskQueries(AbstractType):
+    task = relay.Node.Field(TaskNode)
+    tasks = DjangoFilterConnectionField(TaskNode)
+
+
 class UserQueries(AbstractType):
     user = relay.Node.Field(UserNode)
     users = DjangoFilterConnectionField(UserNode)
@@ -61,7 +72,7 @@ class BookingQueries(AbstractType):
     bookings = DjangoFilterConnectionField(BookingNode)
 
 
-class Queries(UserQueries, PetQueries, BookingQueries, ObjectType):
+class Queries(UserQueries, PetQueries, BookingQueries, TaskQueries, ObjectType):
     node = relay.Node.Field()
     debug = graphene.Field(DjangoDebug, name='__debug')
 
