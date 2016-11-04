@@ -61,8 +61,8 @@ class Task(models.Model):
         (2, 'Done')
     )
 
-    description = models.CharField(max_length=50, blank=False)
-    details = models.CharField(max_length=500, blank=True)
+    title = models.CharField(max_length=50, blank=False)
+    description = models.CharField(max_length=500, blank=True)
     status = models.IntegerField(null=False, default=0, choices=status_types)
     assignee = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_created=True)
