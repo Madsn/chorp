@@ -1,37 +1,5 @@
 [
   {
-    "model": "chorp_models.pettype",
-    "pk": 1,
-    "fields": {
-      "name": "Dog"
-    }
-  },
-  {
-    "model": "chorp_models.pettype",
-    "pk": 2,
-    "fields": {
-      "name": "Cat"
-    }
-  },
-  {
-    "model": "chorp_models.pet",
-    "pk": 1,
-    "fields": {
-      "name": "Biscuit",
-      "type": 1,
-      "created": "2016-10-20T16:42:07Z"
-    }
-  },
-  {
-    "model": "chorp_models.pet",
-    "pk": 2,
-    "fields": {
-      "name": "Oreo",
-      "type": 2,
-      "created": "2016-10-20T16:42:46Z"
-    }
-  },
-  {
     "model": "auth.user",
     "pk": 2,
     "fields": {
@@ -50,18 +18,39 @@
     }
   },
   {
-    "model": "chorp_models.booking",
+    "model": "chorp_models.task",
     "pk": 1,
     "fields": {
-      "pet_owner": 2,
-      "details": "Please take care of my little biscuit",
-      "created": "2016-10-20T16:42:29.910Z",
-      "checkin_date": "2016-10-20",
-      "checkout_date": "2016-10-20",
-      "pets": [
-        1,
-        2
-      ]
+      "title": "Task 1",
+      "description": "",
+      "status": 0,
+      "assignee": null,
+      "created": "2016-11-08T19:55:44.347Z",
+      "due_date": null
+    }
+  },
+  {
+    "model": "chorp_models.task",
+    "pk": 2,
+    "fields": {
+      "title": "Task 2",
+      "description": "",
+      "status": 0,
+      "assignee": null,
+      "created": "2016-11-08T19:55:50.980Z",
+      "due_date": null
+    }
+  },
+  {
+    "model": "chorp_models.task",
+    "pk": 3,
+    "fields": {
+      "title": "Task 3",
+      "description": "",
+      "status": 0,
+      "assignee": null,
+      "created": "2016-11-08T19:55:56.198Z",
+      "due_date": null
     }
   }
 ]
