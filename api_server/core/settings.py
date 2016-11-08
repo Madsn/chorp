@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'graphene_django',
-    'chorp_api',
+    'chorp_models',
+    'chorp_rest_api',
+    'chorp_graphql_api',
     'users',
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'chorp_api.schema.schema',
+    'SCHEMA': 'chorp_models.schema.schema',
 }
 
 MIDDLEWARE = [

@@ -3,7 +3,7 @@ from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from django.contrib.auth.models import User
 import graphene
-from .models import Booking, Pet, PetType, Task
+from chorp_models.models import Booking, Pet, PetType, Task
 from graphene_django.debug import DjangoDebug
 
 

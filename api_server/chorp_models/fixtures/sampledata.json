@@ -1,20 +1,20 @@
 [
   {
-    "model": "chorp_api.pettype",
+    "model": "chorp_models.pettype",
     "pk": 1,
     "fields": {
       "name": "Dog"
     }
   },
   {
-    "model": "chorp_api.pettype",
+    "model": "chorp_models.pettype",
     "pk": 2,
     "fields": {
       "name": "Cat"
     }
   },
   {
-    "model": "chorp_api.pet",
+    "model": "chorp_models.pet",
     "pk": 1,
     "fields": {
       "name": "Biscuit",
@@ -23,7 +23,7 @@
     }
   },
   {
-    "model": "chorp_api.pet",
+    "model": "chorp_models.pet",
     "pk": 2,
     "fields": {
       "name": "Oreo",
@@ -50,7 +50,7 @@
     }
   },
   {
-    "model": "chorp_api.booking",
+    "model": "chorp_models.booking",
     "pk": 1,
     "fields": {
       "pet_owner": 2,

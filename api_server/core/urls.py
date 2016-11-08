@@ -18,12 +18,14 @@ from django.contrib import admin
 from rest_framework import routers
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
-from users import views
+from users.views import UserViewSet, GroupViewSet
+from chorp_rest_api.views import TaskViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+router.register(r'tasks', TaskViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
