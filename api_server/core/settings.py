@@ -44,13 +44,24 @@ INSTALLED_APPS = [
     'chorp_rest_api',
     'chorp_graphql_api',
     'users',
+    'corsheaders',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning'
+}
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+    '127.0.0.1:3000'
+)
 
 GRAPHENE = {
     'SCHEMA': 'chorp_models.schema.schema',
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
