@@ -6,3 +6,5 @@ djangorestframework==3.4.7
 Markdown==2.6.7
 graphene-django>=1.0
 django-rest-swagger==2.0.5
+coverage==4.2
+tox==2.4.1
