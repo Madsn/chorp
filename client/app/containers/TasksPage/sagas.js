@@ -5,10 +5,11 @@ import {
   ADD_TASK_SUCCEEDED,
   ADD_TASK_FAILED,
 } from './constants';
-import { addTask } from '../../api/Tasks';
+import { addTaskSideEffect } from '../../api/Tasks';
 
 function addTaskApiCall(args) {
   console.log('addTaskApiCall called');
+  addTaskSideEffect();
 }
 
 export function* addTask(action) {
