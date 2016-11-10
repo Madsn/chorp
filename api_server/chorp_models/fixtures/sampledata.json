@@ -1,0 +1,56 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$30000$BJop7jREAuiZ$2IWnIFp1WbpdV7NMxcZrRzxVWn4V/hlUWxr7W6SW5F0=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Helga",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2016-10-20T16:42:20.519Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "chorp_models.task",
+    "pk": 1,
+    "fields": {
+      "title": "Task 1",
+      "description": "",
+      "status": 0,
+      "assignee": null,
+      "created": "2016-11-08T19:55:44.347Z",
+      "due_date": null
+    }
+  },
+  {
+    "model": "chorp_models.task",
+    "pk": 2,
+    "fields": {
+      "title": "Task 2",
+      "description": "",
+      "status": 0,
+      "assignee": null,
+      "created": "2016-11-08T19:55:50.980Z",
+      "due_date": null
+    }
+  },
+  {
+    "model": "chorp_models.task",
+    "pk": 3,
+    "fields": {
+      "title": "Task 3",
+      "description": "",
+      "status": 0,
+      "assignee": null,
+      "created": "2016-11-08T19:55:56.198Z",
+      "due_date": null
+    }
+  }
+]

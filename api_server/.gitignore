@@ -1,3 +1,4 @@
 ENV
 api_server.iml
 **/migrations/*
+/htmlcov/
