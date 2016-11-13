@@ -24,6 +24,12 @@ export function clearCompleted() {
   return {type: types.CLEAR_COMPLETED};
 }
 
-export function getTodoList() {
-  return {type: types.FETCH_TODO_LIST};
+export function loadingTasksTriggered() {
+  return {type: types.TASKS_LOADING};
+}
+
+export function loadTasks() {
+  return function (dispatch) {
+    dispatch(loadingTasksTriggered());
+  };
 }

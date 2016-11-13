@@ -1,4 +1,12 @@
-import {ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED} from '../constants/ActionTypes';
+import {
+  ADD_TODO,
+  TASKS_LOADING,
+  DELETE_TODO,
+  EDIT_TODO,
+  COMPLETE_TODO,
+  COMPLETE_ALL,
+  CLEAR_COMPLETED
+} from '../constants/ActionTypes';
 
 const initialState = [
   {
@@ -19,6 +27,10 @@ export default function todos(state = initialState, action) {
         },
         ...state
       ];
+
+    case TASKS_LOADING:
+      console.log('tasks loading triggered in reducer');
+      return state; // TODO
 
     case DELETE_TODO:
       return state.filter(todo =>
