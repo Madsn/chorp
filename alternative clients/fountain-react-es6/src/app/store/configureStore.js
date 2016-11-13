@@ -1,13 +1,10 @@
-import {createStore, compose, applyMiddleware} from 'redux';
+import {createStore, compose} from 'redux';
 import rootReducer from '../reducers/index';
-import createSagaMiddleware from 'redux-saga';
 import {persistState} from 'redux-devtools';
 import DevTools from '../containers/DevTools';
 
-const sagaMiddleware = createSagaMiddleware();
 const enhancer = compose(
-  // Middleware you want to use in development:
-  applyMiddleware(sagaMiddleware),
+  // Middleware you want to use in development
   // Required! Enable Redux DevTools with the monitors you chose
   DevTools.instrument(),
   // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
@@ -27,7 +24,6 @@ export default function configureStore(initialState) {
       store.replaceReducer(nextReducer);
     });
   }
-  store.runSaga = sagaMiddleware.run;
   return store;
 }
 
