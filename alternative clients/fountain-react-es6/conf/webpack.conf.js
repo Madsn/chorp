@@ -39,6 +39,17 @@ module.exports = {
           'react-hot',
           'babel'
         ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
+      },
+      {
+        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader'
       }
     ]
   },
@@ -79,10 +90,12 @@ module.exports = {
   output: {
     path: path.join(process.cwd(), conf.paths.tmp),
     filename: 'index.js'
-  },
+  }
+  ,
   entry: [
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
     `./${conf.path.src('index')}`
   ]
-};
+}
+;
