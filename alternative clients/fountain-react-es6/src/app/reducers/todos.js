@@ -1,10 +1,22 @@
-import {ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED} from '../constants/ActionTypes';
+import {
+  ADD_TODO,
+  TASKS_LOADING,
+  TASKS_LOAD_SUCCESS,
+  DELETE_TODO,
+  EDIT_TODO,
+  COMPLETE_TODO,
+  COMPLETE_ALL,
+  CLEAR_COMPLETED
+} from '../constants/ActionTypes';
 
 const initialState = [
   {
-    text: 'Use Redux',
-    completed: false,
-    id: 0
+    id: 0,
+    title: 'Use Redux',
+    description: 'Use redux description',
+    status: 0,
+    assignee: null,
+    dueDate: null
   }
 ];
 
@@ -14,11 +26,19 @@ export default function todos(state = initialState, action) {
       return [
         {
           id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-          completed: false,
-          text: action.text
+          status: 0,
+          title: action.title
         },
         ...state
       ];
+
+    case TASKS_LOADING:
+      console.log('tasks loading triggered in reducer');
+      return state; // TODO
+
+    case TASKS_LOAD_SUCCESS:
+      console.log('tasks load success', action);
+      return action.tasks;
 
     case DELETE_TODO:
       return state.filter(todo =>
@@ -35,7 +55,7 @@ export default function todos(state = initialState, action) {
     case COMPLETE_TODO:
       return state.map(todo =>
         todo.id === action.id ?
-          Object.assign({}, todo, {completed: !todo.completed}) :
+          Object.assign({}, todo, {status: 2}) :
           todo
       );
 

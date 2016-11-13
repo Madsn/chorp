@@ -8,7 +8,7 @@ def get_model_fields(model):
 
 
 def get_name_from_serializer_field(field):
-    return field.split('.')[2]
+    return str(field).split('.')[2]
 
 
 class SerializersTestCase(TestCase):
@@ -18,7 +18,5 @@ class SerializersTestCase(TestCase):
         for field in get_model_fields(Task()):
             # chorp_models.Task.id etc.
             field_name = get_name_from_serializer_field(field)
-            if field_name not in ['id', 'created']:
-                self.assertIsNotNone(serializer.fields[field_name])
-
-
+            # if field_name not in ['id', 'created']:
+            self.assertIsNotNone(serializer.fields[field_name])

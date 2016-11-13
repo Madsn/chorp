@@ -18,6 +18,10 @@ class MainSection extends Component {
     this.handleCompleteAll = this.handleCompleteAll.bind(this);
   }
 
+  componentWillMount() {
+    this.props.actions.loadTasks();
+  }
+
   handleClearCompleted() {
     this.props.actions.clearCompleted();
   }
@@ -68,7 +72,7 @@ class MainSection extends Component {
 
     const filteredTodos = todos.filter(TODO_FILTERS[filter]);
     const completedCount = todos.reduce((count, todo) =>
-      todo.completed ? count + 1 : count,
+      todo.status === 2 ? count + 1 : count,
       0
     );
 

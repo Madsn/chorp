@@ -7,8 +7,8 @@ function setup(editing = false) {
   const props = {
     todo: {
       id: 0,
-      text: 'Use Redux',
-      completed: false
+      title: 'Use Redux',
+      status: 0
     },
     editTodo: jasmine.createSpy(),
     deleteTodo: jasmine.createSpy(),

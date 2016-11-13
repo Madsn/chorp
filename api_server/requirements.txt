@@ -8,3 +8,4 @@ graphene-django>=1.0
 django-rest-swagger==2.0.5
 coverage==4.2
 tox==2.4.1
+djangorestframework-camel-case==0.2.0
