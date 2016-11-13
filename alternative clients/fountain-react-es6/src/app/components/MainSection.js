@@ -18,6 +18,11 @@ class MainSection extends Component {
     this.handleCompleteAll = this.handleCompleteAll.bind(this);
   }
 
+  componentWillMount() {
+    console.log('willmount');
+    this.props.actions.getTodoList();
+  }
+
   handleClearCompleted() {
     this.props.actions.clearCompleted();
   }

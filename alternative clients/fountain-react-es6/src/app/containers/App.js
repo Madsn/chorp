@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
+import DevTools from './DevTools';
 import * as TodoActions from '../actions/index';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
           todos={todos}
           actions={actions}
           />
+        <DevTools/>
       </div>
     );
   }
