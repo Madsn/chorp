@@ -42,7 +42,7 @@ class TodoItem extends Component {
     if (this.state.editing) {
       element = (
         <TodoTextInput
-          text={todo.text}
+          title={todo.title}
           editing={this.state.editing}
           onSave={this.handleSave}
           />
@@ -53,13 +53,13 @@ class TodoItem extends Component {
           <input
             className="toggle"
             type="checkbox"
-            checked={todo.completed}
+            checked={todo.status === 2}
             onChange={this.handleChange}
             />
           <label
             onDoubleClick={this.handleDoubleClick}
             >
-            {todo.text}
+            {todo.title}
           </label>
           <button
             className="destroy"

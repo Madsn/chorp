@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import * as types from '../constants/ActionTypes';
 
 export function addTodo(text) {
@@ -28,8 +29,21 @@ export function loadingTasksTriggered() {
   return {type: types.TASKS_LOADING};
 }
 
+export function loadingTasksSuccess(json) {
+  return {type: types.TASKS_LOAD_SUCCESS, tasks: json};
+}
+
 export function loadTasks() {
   return function (dispatch) {
     dispatch(loadingTasksTriggered());
+    return fetch(`http://localhost:8000/api/tasks`)
+      .then(response => response.json())
+      .then(json =>
+
+        // We can dispatch many times!
+        // Here, we update the app state with the results of the API call.
+
+        dispatch(loadingTasksSuccess(json))
+      );
   };
 }

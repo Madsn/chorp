@@ -72,7 +72,7 @@ class MainSection extends Component {
 
     const filteredTodos = todos.filter(TODO_FILTERS[filter]);
     const completedCount = todos.reduce((count, todo) =>
-      todo.completed ? count + 1 : count,
+      todo.status === 2 ? count + 1 : count,
       0
     );
 
