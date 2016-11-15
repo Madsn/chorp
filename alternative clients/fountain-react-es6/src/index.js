@@ -4,7 +4,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import HomePage from './app/components/HomePage';
-import Navbar from './app/components/Navbar';
+import Navbar from './app/components/Layout/Navbar';
 import configureStore from './app/store/configureStore';
 import {Router, Route, browserHistory} from 'react-router';
 

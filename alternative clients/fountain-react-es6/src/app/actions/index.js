@@ -39,10 +39,6 @@ export function loadTasks() {
     return fetch(`http://localhost:8000/api/tasks`)
       .then(response => response.json())
       .then(json =>
-
-        // We can dispatch many times!
-        // Here, we update the app state with the results of the API call.
-
         dispatch(loadingTasksSuccess(json))
       );
   };
