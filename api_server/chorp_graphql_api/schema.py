@@ -14,26 +14,6 @@ class UserNode(DjangoObjectType):
         filter_fields = ['id', 'username']
 
 
-class BookingNode(DjangoObjectType):
-    class Meta:
-        model = Booking
-        interfaces = (relay.Node, )
-
-
-class PetNode(DjangoObjectType):
-    class Meta:
-        model = Pet
-        interfaces = (relay.Node, )
-
-
-class PetTypeNode(DjangoObjectType):
-    class Meta:
-        model = PetType
-        interfaces = (relay.Node, )
-        filter_fields = ['name']
-        filter_order_by = ['name']
-
-
 class TaskNode(DjangoObjectType):
     class Meta:
         model = Task
@@ -59,20 +39,7 @@ class UserQueries(AbstractType):
             return User.objects.filter(id=context.user.id)
 
 
-class PetQueries(AbstractType):
-    pet_type = relay.Node.Field(PetTypeNode)
-    pet_types = DjangoFilterConnectionField(PetTypeNode)
-
-    pet = relay.Node.Field(PetNode)
-    pets = DjangoFilterConnectionField(PetNode)
-
-
-class BookingQueries(AbstractType):
-    booking = relay.Node.Field(BookingNode)
-    bookings = DjangoFilterConnectionField(BookingNode)
-
-
-class Queries(UserQueries, PetQueries, BookingQueries, TaskQueries, ObjectType):
+class Queries(UserQueries, TaskQueries, ObjectType):
     node = relay.Node.Field()
     debug = graphene.Field(DjangoDebug, name='__debug')
 
