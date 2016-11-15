@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import {Menu} from 'semantic-ui-react';
+import {Link} from 'react-router';
 
 class Navbar extends Component {
-  state = {};
-
   render() {
-    const items = [
-      {active: true, name: 'Homepage', link: '/'},
-      {name: 'Tasks', link: '/tasks'}
-    ];
-
-    return <Menu items={items}/>
+    return (
+      <Menu>
+        <Menu.Item as={Link} to=''>
+          Homepage
+        </Menu.Item>
+        <Menu.Item as={Link} to='/tasks'>
+          Tasks
+        </Menu.Item>
+      </Menu>
+    );
   }
 }
 
