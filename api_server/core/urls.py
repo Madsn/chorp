@@ -19,7 +19,7 @@ from rest_framework import routers, renderers, response, schemas
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 from users.views import UserViewSet, GroupViewSet
-from chorp_rest_api.views import TaskViewSet
+from chorp_rest_api.views import TaskViewSet, AccountViewSet, AccountTransactionViewSet
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 from rest_framework.decorators import api_view, renderer_classes
 
@@ -28,6 +28,8 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'tasks', TaskViewSet)
+router.register(r'accounts', AccountViewSet)
+router.register(r'accounttransactions', AccountTransactionViewSet)
 
 
 @api_view()

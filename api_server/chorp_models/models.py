@@ -34,3 +34,21 @@ class Task(models.Model):
 
     class Meta:
         ordering = ('due_date', 'created')
+
+
+class Account(models.Model):
+    balance = models.BigIntegerField(default=0)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return ''.join([self.owner.username, ': ', self.balance])
+
+
+class AccountTransaction(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    transaction_time = models.DateTimeField(auto_now_add=True)
+    amount = models.BigIntegerField()
+
+    def __str__(self):
+        return ''.join([self.account.owner.username, ': ', self.amount, ' - ', date_str(self.transaction_time)])
+
