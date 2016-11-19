@@ -6,7 +6,7 @@ import {StatusType} from "./StatusType";
 })
 export class StatusPipe implements PipeTransform {
 
-  transform(value: StatusType, args?: any): any {
+  transform(value: any, args?: any): any {
     switch (value) {
       case StatusType.DOING:
         return "Doing";
@@ -15,7 +15,7 @@ export class StatusPipe implements PipeTransform {
       case StatusType.TODO:
         return "Todo";
       default:
-        return "Err";
+        return "-";
     }
   }
 
