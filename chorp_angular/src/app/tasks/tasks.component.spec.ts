@@ -1,10 +1,11 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
-import { TasksComponent } from './tasks.component';
+import {TasksComponent} from './tasks.component';
 import {StatusPipe} from "./types/status/status.pipe";
+import {FormsModule} from "@angular/forms";
 
 describe('TasksComponent', () => {
   let component: TasksComponent;
@@ -12,9 +13,10 @@ describe('TasksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TasksComponent, StatusPipe ]
+      imports: [FormsModule],
+      declarations: [TasksComponent, StatusPipe]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,5 +27,17 @@ describe('TasksComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a task model', () => {
+    expect(component.newTask).toBeTruthy();
+  });
+
+  it('should properly clear title', () => {
+    const title = "My title";
+    component.newTask.title = title;
+    expect(component.newTask.title).toBe(title);
+    component.resetTitle();
+    expect(component.newTask.title).toBeNull();
   });
 });

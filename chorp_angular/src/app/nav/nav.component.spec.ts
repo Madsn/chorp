@@ -8,6 +8,7 @@ import {AppRoutingModule, routableComponents} from "../app-routing.module";
 import {StatusPipe} from "../tasks/types/status/status.pipe";
 import {APP_BASE_HREF} from "@angular/common";
 import {RouterTestingModule} from "@angular/router/testing";
+import {FormsModule} from "@angular/forms";
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -15,7 +16,7 @@ describe('NavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, FormsModule],
       declarations: [NavComponent, routableComponents, StatusPipe],
     })
       .compileComponents();

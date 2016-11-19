@@ -5,6 +5,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NavComponent} from "./nav/nav.component";
 import {StatusPipe} from "./tasks/types/status/status.pipe";
 import {APP_BASE_HREF} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {APP_BASE_HREF} from "@angular/common";
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue: "/"}],
   bootstrap: [AppComponent]

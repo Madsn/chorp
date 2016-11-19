@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TasksService} from "./tasks.service";
-import {TaskType} from "./types/TaskType";
+import {TaskType, ITaskType} from "./types/TaskType";
 
 @Component({
   selector: 'app-tasks',
@@ -10,7 +10,8 @@ import {TaskType} from "./types/TaskType";
 })
 export class TasksComponent implements OnInit {
 
-  tasks: Array<TaskType>;
+  tasks: Array<ITaskType>;
+  newTask: TaskType = new TaskType();
 
   constructor(private tasksService: TasksService) {
   }
@@ -23,4 +24,7 @@ export class TasksComponent implements OnInit {
     this.tasks = this.tasksService.getAll();
   }
 
+  resetTitle() {
+    this.newTask.title = null;
+  }
 }
