@@ -1,4 +1,4 @@
-import {StatusType} from "./StatusType";
+import {StatusType} from "./status/StatusType";
 export interface TaskType {
   id: Number;
   title: String;

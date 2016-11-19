@@ -1,9 +1,13 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
-import { NavComponent } from './nav.component';
+import {NavComponent} from './nav.component';
+import {AppRoutingModule, routableComponents} from "../app-routing.module";
+import {StatusPipe} from "../tasks/types/status/status.pipe";
+import {APP_BASE_HREF} from "@angular/common";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -11,9 +15,10 @@ describe('NavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavComponent ]
+      imports: [RouterTestingModule],
+      declarations: [NavComponent, routableComponents, StatusPipe],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { TasksComponent } from './tasks.component';
+import {StatusPipe} from "./types/status/status.pipe";
 
 describe('TasksComponent', () => {
   let component: TasksComponent;
@@ -11,7 +12,7 @@ describe('TasksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TasksComponent ]
+      declarations: [ TasksComponent, StatusPipe ]
     })
     .compileComponents();
   }));
