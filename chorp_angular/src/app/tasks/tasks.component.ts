@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TasksService} from "./tasks.service";
 import {TaskType, ITaskType} from "./types/TaskType";
+import {StatusType} from "./types/status/StatusType";
 
 @Component({
   selector: 'app-tasks',
@@ -24,7 +25,17 @@ export class TasksComponent implements OnInit {
     this.tasks = this.tasksService.getAll();
   }
 
-  resetTitle() {
+  resetNewTaskTitle() {
     this.newTask.title = null;
+  }
+
+  saveNewTask(): TaskType {
+    this.newTask.created = new Date();
+    this.newTask.status = StatusType.TODO;
+    this.newTask.assignee = 1;
+    const savedTask = this.newTask;
+    this.tasks = this.tasksService.add(savedTask);
+    this.newTask = new TaskType();
+    return savedTask;
   }
 }

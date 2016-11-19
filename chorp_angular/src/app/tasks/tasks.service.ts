@@ -5,7 +5,7 @@ import {StatusType} from "./types/status/StatusType";
 @Injectable()
 export class TasksService {
 
-  items = Array[ITaskType];
+  items: ITaskType[];
   constructor() {
     this.items = [
       {id: 5, title: "Title", description: "desc", status: StatusType.DOING, assignee: 5, created: new Date(), dueDate: new Date()},
@@ -17,7 +17,8 @@ export class TasksService {
     return this.items;
   }
 
-  add(newTask: ITaskType) {
+  add(newTask): ITaskType[] {
     this.items.push(newTask);
+    return this.items;
   }
 }

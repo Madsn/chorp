@@ -1,7 +1,9 @@
 <div class="ui container">
   <h1 class="ui header">Tasks</h1>
   <div class="form-group">
-    <input type="text" placeholder="Add new" id="title" [(ngModel)]="newTask.title" (keydown.esc)="resetTitle()">
+    <input type="text" placeholder="Add new" id="title"
+           [(ngModel)]="newTask.title" (keyup.esc)="resetNewTaskTitle()"
+            (keyup.enter)="saveNewTask()">
   </div>
   {{newTask.title}}
   <div class="ui list">
