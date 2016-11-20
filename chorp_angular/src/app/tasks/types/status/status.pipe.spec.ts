@@ -2,7 +2,7 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { StatusPipe } from './status.pipe';
-import {StatusType} from "./StatusType";
+import {StatusEnum} from "./StatusType";
 
 describe('StatusPipe', () => {
   it('create an instance', () => {
@@ -12,9 +12,9 @@ describe('StatusPipe', () => {
 
   it('convert from enum to string', () => {
     let pipe = new StatusPipe();
-    expect(pipe.transform(StatusType.DOING)).toBe("Doing");
-    expect(pipe.transform(StatusType.DONE)).toBe("Done");
-    expect(pipe.transform(StatusType.TODO)).toBe("Todo");
+    expect(pipe.transform(StatusEnum.DOING)).toBe("Doing");
+    expect(pipe.transform(StatusEnum.DONE)).toBe("Done");
+    expect(pipe.transform(StatusEnum.TODO)).toBe("Todo");
   });
 
   it('handle incorrect inputs gracefully', () => {
