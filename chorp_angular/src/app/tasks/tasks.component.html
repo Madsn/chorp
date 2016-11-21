@@ -1,14 +1,43 @@
-<div class="ui container">
-  <h1 class="ui header">Tasks</h1>
-  <div class="form-group">
-    <input type="text" placeholder="Add new" id="title"
-           [(ngModel)]="newTask.title" (keyup.esc)="resetNewTaskTitle()"
-            (keyup.enter)="saveNewTask()">
+<div class="ui one column grid container">
+  <div class="row">
+    <div class="column">
+      <h1 class="ui header">Tasks</h1>
+      <div class="ui input">
+        <input type="text" placeholder="Add new" id="title"
+               [(ngModel)]="newTask.title" (keyup.esc)="resetNewTaskTitle()"
+               (keyup.enter)="saveNewTask()">
+      </div>
+    </div>
   </div>
-  {{newTask.title}}
-  <div class="ui list">
-    <div class="item" *ngFor="let task of tasks; let i = index; trackBy: id">
-      {{task.title}} : {{task.description}} ({{task.status | status}})
+</div>
+<div class="ui three column grid container">
+  <div class="row">
+    <div class='column'>
+      <h1 class="ui header">Todo</h1>
+      <div attr.status="{{statusEnum.TODO}}" class="ui list segment" [dragula]='"tasks-bag"'>
+        <div attr.id="{{i}}" class="item" *ngFor="let task of todoTasks; let i = index; trackBy: id">
+          {{task.title}} : {{task.description}}
+          <app-status-label [status]="task.status"></app-status-label>
+        </div>
+      </div>
+    </div>
+    <div class='column'>
+      <h1>Doing</h1>
+      <div attr.status="{{statusEnum.DOING}}" class="ui list segment" [dragula]='"tasks-bag"'>
+        <div attr.id="{{i}}" class="item" *ngFor="let task of doingTasks; let i = index; trackBy: id">
+          {{task.title}} : {{task.description}}
+          <app-status-label [status]="task.status"></app-status-label>
+        </div>
+      </div>
+    </div>
+    <div class='column'>
+      <h1>Done</h1>
+      <div attr.status="{{statusEnum.DONE}}" class="ui list segment" [dragula]='"tasks-bag"'>
+        <div attr.id="{{i}}" class="item" *ngFor="let task of doneTasks; let i = index; trackBy: id">
+          {{task.title}} : {{task.description}}
+          <app-status-label [status]="task.status"></app-status-label>
+        </div>
+      </div>
     </div>
   </div>
 </div>

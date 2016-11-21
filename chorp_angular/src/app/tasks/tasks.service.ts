@@ -1,24 +1,37 @@
 import {Injectable} from "@angular/core";
 import {ITaskType} from "./types/TaskType";
-import {StatusType} from "./types/status/StatusType";
+import {StatusEnum} from "./types/status/StatusType";
 
 @Injectable()
 export class TasksService {
 
-  items: ITaskType[];
+  items: ITaskType[] = [];
+  id: number = 0;
+
   constructor() {
-    this.items = [
-      {id: 5, title: "Title", description: "desc", status: StatusType.DOING, assignee: 5, created: new Date(), dueDate: new Date()},
-      {id: 6, title: "Title2", description: "desc2", status: StatusType.DOING, assignee: 5, created: new Date(), dueDate: new Date()}
-    ];
   }
 
-  getAll(): ITaskType[] {
-    return this.items;
+  getAll(status?: StatusEnum): ITaskType[] {
+    if (status != null) {
+      return this.items.filter(
+        task => task.status === status);
+    } else {
+      return this.items;
+    }
   }
 
-  add(newTask): ITaskType[] {
+  add(newTask: ITaskType): ITaskType {
+    newTask.id = this.id++;
     this.items.push(newTask);
-    return this.items;
+    return newTask;
+  }
+
+  updateStatus(itemId: number, newStatus: StatusEnum) {
+    for (var i in this.items) {
+      if (this.items[i].id === itemId) {
+        this.items[i].status = newStatus;
+        break;
+      }
+    }
   }
 }

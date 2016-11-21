@@ -9,6 +9,7 @@ import {StatusPipe} from "../tasks/types/status/status.pipe";
 import {APP_BASE_HREF} from "@angular/common";
 import {RouterTestingModule} from "@angular/router/testing";
 import {FormsModule} from "@angular/forms";
+import {DragulaModule} from "ng2-dragula/ng2-dragula";
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -26,9 +27,5 @@ describe('NavComponent', () => {
     fixture = TestBed.createComponent(NavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });

@@ -6,8 +6,10 @@ import {DebugElement} from '@angular/core';
 import {TasksComponent} from './tasks.component';
 import {StatusPipe} from "./types/status/status.pipe";
 import {FormsModule} from "@angular/forms";
-import {StatusType} from "./types/status/StatusType";
+import {StatusEnum} from "./types/status/StatusType";
 import {TaskType} from "./types/TaskType";
+import {DragulaModule} from "ng2-dragula/ng2-dragula";
+import {StatusLabelComponent} from "../status-label/status-label.component";
 
 describe('TasksComponent', () => {
   let component: TasksComponent;
@@ -15,8 +17,8 @@ describe('TasksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [TasksComponent, StatusPipe]
+      imports: [FormsModule, DragulaModule],
+      declarations: [TasksComponent, StatusPipe, StatusLabelComponent]
     })
       .compileComponents();
   }));
@@ -31,17 +33,13 @@ describe('TasksComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a task model', () => {
-    expect(component.newTask).toBeTruthy();
-  });
-
   it('should create new tasks with default values', () => {
     const title = "My title 332134";
     component.newTask.title = title;
     expect(component.newTask.title).toBe(title);
     const savedTask: TaskType = component.saveNewTask();
     expect(savedTask.title).toBe(title);
-    expect(savedTask.status).toBe(StatusType.TODO);
+    expect(savedTask.status).toBe(StatusEnum.TODO);
     expect(savedTask.created).toBeTruthy();
     expect(savedTask.created.getDate() == new Date().getDate()).toBeTruthy();
   });
@@ -53,7 +51,6 @@ describe('TasksComponent', () => {
     component.saveNewTask();
     expect(component.newTask.title).toBeFalsy();
     expect(component.newTask.status).toBeFalsy();
-    expect(component.newTask.created).toBeFalsy();
   });
 
   it('should properly clear title', () => {
