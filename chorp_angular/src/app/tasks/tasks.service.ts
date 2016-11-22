@@ -28,9 +28,9 @@ export class TasksService {
 
   updateStatus(itemId: number, newStatus: StatusEnum) {
     for (var i in this.items) {
-      if (this.items[i].id === itemId) {
+      if (this.items[i].id == itemId) {
         this.items[i].status = newStatus;
-        break;
+        return this.items;
       }
     }
   }

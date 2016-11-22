@@ -1,0 +1,6 @@
+<div attr.status="{{status}}" class="ui list segment" [dragula]='"tasks-bag"'>
+  <div attr.taskId="{{task.id}}" class="item" *ngFor="let task of tasks | filterByStatus:status; let i = index; trackBy: id;">
+    {{task.title}} : {{task.description}}
+    <app-status-label [status]="status"></app-status-label>
+  </div>
+</div>
