@@ -7,9 +7,10 @@ import {TasksComponent} from './tasks.component';
 import {StatusPipe} from "./types/status/status.pipe";
 import {FormsModule} from "@angular/forms";
 import {StatusEnum} from "./types/status/StatusType";
-import {TaskType} from "./types/TaskType";
+import {TaskType, ITaskType} from "./types/TaskType";
 import {DragulaModule} from "ng2-dragula/ng2-dragula";
 import {StatusLabelComponent} from "../status-label/status-label.component";
+import {FilterByStatusPipe} from "./types/status/filter-by-status.pipe";
 
 describe('TasksComponent', () => {
   let component: TasksComponent;
@@ -18,7 +19,7 @@ describe('TasksComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, DragulaModule],
-      declarations: [TasksComponent, StatusPipe, StatusLabelComponent]
+      declarations: [TasksComponent, StatusPipe, FilterByStatusPipe, StatusLabelComponent]
     })
       .compileComponents();
   }));
@@ -37,7 +38,7 @@ describe('TasksComponent', () => {
     const title = "My title 332134";
     component.newTask.title = title;
     expect(component.newTask.title).toBe(title);
-    const savedTask: TaskType = component.saveNewTask();
+    const savedTask: ITaskType = component.saveNewTask();
     expect(savedTask.title).toBe(title);
     expect(savedTask.status).toBe(StatusEnum.TODO);
     expect(savedTask.created).toBeTruthy();

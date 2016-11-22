@@ -13,9 +13,7 @@ import {DragulaService} from "ng2-dragula/components/dragula.provider";
 export class TasksComponent implements OnInit {
 
   statusEnum = StatusEnum;
-  todoTasks: Array<ITaskType>;
-  doingTasks: Array<ITaskType>;
-  doneTasks: Array<ITaskType>;
+  tasks: Array<ITaskType>;
   newTask: TaskType = new TaskType();
 
   constructor(private tasksService: TasksService, private dragulaService: DragulaService) {
@@ -27,20 +25,12 @@ export class TasksComponent implements OnInit {
 
   private onDrop(args) {
     const newStatus: StatusEnum = args[2].attributes["status"].value;
-    const itemId: number = args[1].attributes["id"].value;
-    console.log(newStatus);
-    console.log(itemId);
-    this.tasksService.updateStatus(itemId, newStatus);
+    const itemId: number = args[1].attributes["taskId"].value;
+    this.tasks = this.tasksService.updateStatus(itemId, newStatus);
   }
 
   ngOnInit() {
-    this.todoTasks = this.getTasks(StatusEnum.TODO);
-    this.doingTasks = this.getTasks(StatusEnum.DOING);
-    this.doneTasks = this.getTasks(StatusEnum.DONE);
-  }
-
-  getTasks(status?: StatusEnum) {
-    return this.tasksService.getAll(status);
+    this.tasks = this.tasksService.getAll();
   }
 
   resetNewTaskTitle() {
@@ -52,7 +42,6 @@ export class TasksComponent implements OnInit {
       this.newTask.status = StatusEnum.TODO;
       this.newTask.assignee = 1;
       const savedTask = this.tasksService.add(this.newTask);
-      this.todoTasks.push(savedTask);
       this.newTask = new TaskType();
       return savedTask;
     }

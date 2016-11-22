@@ -1,22 +1,21 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 import {StatusEnum} from "./StatusType";
 
 @Pipe({
-  name: 'status'
+  name: 'status',
+  pure: false
 })
 export class StatusPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    switch (value) {
-      case StatusEnum.DOING:
-        return "Doing";
-      case StatusEnum.DONE:
-        return "Done";
-      case StatusEnum.TODO:
-        return "Todo";
-      default:
-        return "-";
-    }
+    if (StatusEnum.DOING == value)
+      return "Doing";
+    else if (StatusEnum.DONE == value)
+      return "Done";
+    else if (StatusEnum.TODO == value)
+      return "Todo";
+    else
+      return "-";
   }
 
 }

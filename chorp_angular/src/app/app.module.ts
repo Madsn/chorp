@@ -8,6 +8,8 @@ import {APP_BASE_HREF} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {StatusLabelComponent} from './status-label/status-label.component';
 import {DragulaModule} from "ng2-dragula/ng2-dragula";
+import {FilterByStatusPipe} from "./tasks/types/status/filter-by-status.pipe";
+import { TasksListComponent } from './tasks-list/tasks-list.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {DragulaModule} from "ng2-dragula/ng2-dragula";
     routableComponents,
     NavComponent,
     StatusPipe,
-    StatusLabelComponent
+    StatusLabelComponent,
+    FilterByStatusPipe,
+    TasksListComponent
   ],
   imports: [
     AppRoutingModule,
