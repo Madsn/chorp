@@ -10,6 +10,7 @@ import {StatusLabelComponent} from './status-label/status-label.component';
 import {DragulaModule} from "ng2-dragula/ng2-dragula";
 import {FilterByStatusPipe} from "./tasks/types/status/filter-by-status.pipe";
 import { TasksListComponent } from './tasks-list/tasks-list.component';
+import { AllowanceAccountsModule } from './allowance-accounts/allowance-accounts.module';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,14 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
     StatusPipe,
     StatusLabelComponent,
     FilterByStatusPipe,
-    TasksListComponent
+    TasksListComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    DragulaModule
+    DragulaModule,
+    AllowanceAccountsModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue: "/"}],
   bootstrap: [AppComponent]
