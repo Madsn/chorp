@@ -12,9 +12,9 @@ build:
         sudo npm install -g typescript
       cwd: chorp_angular/
     - script:
-      name: Install Karma and angular-cli
+      name: Install angular-cli
       code: |
-        sudo npm install -g karma-cli angular-cli
+        sudo npm install -g angular-cli
       cwd: chorp_angular/
     - npm-install:
       name: Install Deps
