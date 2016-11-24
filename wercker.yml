@@ -16,11 +16,13 @@ build:
       code: |
         sudo npm install -g angular-cli
       cwd: chorp_angular/
-    - npm-install:
+    - script:
       name: Install Deps
-      cwd:
-        chorp_angular/
-    - npm-test:
+      code: |
+        sudo npm install
+      cwd: chorp_angular/
+    - script:
       name: Test
-      cwd:
-        chorp_angular/
+      code: |
+        npm test
+      cwd: chorp_angular/
