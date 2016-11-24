@@ -22,4 +22,5 @@ build:
         chorp_angular/
     - npm-test:
       name: Test
-      cwd: chorp_angular/
+      cwd:
+        chorp_angular/
