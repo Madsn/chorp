@@ -1,28 +1,33 @@
 import {Injectable} from "@angular/core";
-import {ITaskType} from "./types/TaskType";
+import {ITaskType, TaskType} from "./types/TaskType";
 import {StatusEnum} from "./types/status/StatusType";
-import {RestApiService} from "../services/rest-api.service";
 
 @Injectable()
 export class TasksService {
 
-  items: ITaskType[]; // Linked to the array in restapi
+  items: ITaskType[] = [];
+  taskId: number = 0;
 
-  constructor(private api: RestApiService) {
-    this.items = this.api.getTasks();
+  constructor() {
   }
 
   getAll(status?: StatusEnum): ITaskType[] {
-    if (status != null) {
+    if (status !== undefined) {
       return this.items.filter(
-        task => task.status === status);
+        task => {
+          console.log(task.status);
+          console.log(status);
+          console.log(task.status === status);
+          return task.status === status
+        });
     } else {
       return this.items;
     }
   }
 
-  add(newTask: ITaskType): ITaskType {
-    return this.api.addTask(newTask);
+  add(task: TaskType) {
+    this.items.push(task);
+    return task;
   }
 
   updateStatus(itemId: number, newStatus: StatusEnum) {
@@ -32,5 +37,9 @@ export class TasksService {
         return this.items;
       }
     }
+  }
+
+  getNewTask() {
+    return new TaskType({id: this.taskId++});
   }
 }

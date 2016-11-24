@@ -1,11 +1,11 @@
 import {StatusEnum} from "./status/StatusType";
 export interface ITaskType {
   id?: number;
-  title: string;
+  title?: string;
   description?: string;
-  status: StatusEnum;
+  status?: StatusEnum;
   assignee?: number;
-  created: Date;
+  created?: Date;
   dueDate?: Date;
 }
 export class TaskType implements ITaskType {
@@ -17,11 +17,13 @@ export class TaskType implements ITaskType {
   created: Date;
   dueDate: Date;
 
-  constructor(id?: number, title?: string, description?: string, status?: StatusEnum) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.status = status;
-    this.created = new Date();
+  constructor(obj: ITaskType) {
+    this.id = obj.id;
+    this.title = obj.title;
+    this.description = obj.description;
+    this.status = obj.status;
+    this.assignee = obj.assignee;
+    this.dueDate = obj.dueDate;
+    this.created = obj.created || new Date();
   }
 }
