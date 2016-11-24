@@ -15,9 +15,6 @@ export class TasksService {
     if (status !== undefined) {
       return this.items.filter(
         task => {
-          console.log(task.status);
-          console.log(status);
-          console.log(task.status === status);
           return task.status === status
         });
     } else {
@@ -25,7 +22,7 @@ export class TasksService {
     }
   }
 
-  add(task: TaskType) {
+  add(task: ITaskType) {
     this.items.push(task);
     return task;
   }
