@@ -1,27 +1,25 @@
-box: nodesource/vivid:6.9.1
+box: nodesource/trusty:6.3.0
+steps:
+  - wercker/npm-install@1.1.4
+  - wercker/npm-test@0.0.3
 packages:
   - firefox
 build:
   steps:
     - script:
-      name: Enable virtual display
-      code: |-
-        # Start xvfb which gives the context an virtual display
-        # which is required for tests that require an GUI
-        export DISPLAY=:99.0
-        start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
-        # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
-        sleep 3
-    - install-packages:
-      packages: firefox
-
-    - npm-install:
+      name: Install TypeScript
+      code: |
+        sudo npm install -g typescript
       cwd: chorp_angular/
-
     - script:
-      name: update webdriver
-      code: ./node_modules/.bin/webdriver-manager update
+      name: Install Karma
+      code: |
+        sudo npm install -g karma-cli
       cwd: chorp_angular/
-
+    - npm-install:
+      name: Install Deps
+      cwd:
+        chorp_angular/
     - npm-test:
+      name: Test
       cwd: chorp_angular/
