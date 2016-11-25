@@ -1,3 +1,5 @@
+import { AccountTransaction } from './../../../models/account-transaction.model';
+import { AllowanceAccountService } from './../shared/allowance-account.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./allowance-account.component.css']
 })
 export class AllowanceAccountComponent implements OnInit {
+  private accountTransactions: AccountTransaction[] = [];
 
-  constructor() { }
+  constructor(private _allowanceAccountService: AllowanceAccountService) { }
 
   ngOnInit() {
+    this._allowanceAccountService.getAccountTransactions()
+      .subscribe(transactions => {
+        this.accountTransactions = transactions;
+      });
   }
-
 }
