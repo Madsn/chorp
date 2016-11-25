@@ -25,4 +25,3 @@ build:
       name: Test
       code: |
         npm test
-      cwd: chorp_angular/
