@@ -24,4 +24,5 @@ build:
     - script:
       name: Test
       code: |
-        npm test
+        ng test
+      cwd: chorp_angular/
