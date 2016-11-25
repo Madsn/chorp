@@ -7,21 +7,17 @@ packages:
 build:
   steps:
     - script:
-      name: Install TypeScript
+      name: Install Globals
       code: |
-        sudo npm install -g typescript
-      cwd: chorp_angular/
-    - script:
-      name: Install angular-cli
-      code: |
-        sudo npm install -g karma-cli@1.0.1 angular-cli --unsafe-perm
+        sudo npm install -g typescript yarn angular-cli karma-cli --unsafe-perm
       cwd: chorp_angular/
     - script:
       name: Install Deps
       code: |
-        sudo npm install --unsafe-perm
-        sudo npm install karma@1.2.0
-        sudo npm install karma-jasmine@1.0.2
+        sudo yarn
+        #sudo npm install karma@1.2.0
+        #sudo npm install karma-jasmine@1.0.2
+        #sudo npm install karma-firefox-launcher@2.0.0
       cwd: chorp_angular/
     - script:
       name: Test
