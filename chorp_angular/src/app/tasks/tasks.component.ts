@@ -19,14 +19,13 @@ export class TasksComponent implements OnInit {
   constructor(private tasksService: TasksService, private dragulaService: DragulaService) {
     this.newTask = this.tasksService.getNewTask();
     dragulaService.drop.subscribe(value => {
-      console.log(value);
       this.onDrop(value);
     });
   }
 
   private onDrop(args) {
-    const newStatus: StatusEnum = args[2].attributes["status"].value;
-    const itemId: number = args[1].attributes["taskId"].value;
+    const newStatus: StatusEnum = args[2].attributes['status'].value;
+    const itemId: number = args[1].attributes['taskId'].value;
     this.tasks = this.tasksService.updateStatus(itemId, newStatus);
   }
 
