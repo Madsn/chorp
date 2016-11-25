@@ -2,11 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AllowanceAccountsComponent } from './allowance-accounts.component';
+import { AllowanceAccountComponent } from './allowance-account/allowance-account.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AllowanceAccountsComponent
+    component: AllowanceAccountsComponent,
+    children: [
+      {
+        path: '',
+        component: AllowanceAccountComponent,
+      },
+    ]
   }
 ];
 
@@ -16,4 +23,4 @@ const routes: Routes = [
 })
 export class AllowanceAccountsRoutingModule { }
 
-export const routedComponents = [AllowanceAccountsComponent];
+export const routedComponents = [AllowanceAccountsComponent, AllowanceAccountComponent];
