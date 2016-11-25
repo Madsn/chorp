@@ -12,19 +12,14 @@ build:
         sudo npm install -g typescript
       cwd: chorp_angular/
     - script:
-      name: Install node-gyp
-      code: |
-        sudo npm install -g node-gyp
-      cwd: chorp_angular/
-    - script:
       name: Install angular-cli
       code: |
-        sudo npm install -g angular-cli
+        sudo npm install -g angular-cli --unsafe-perm
       cwd: chorp_angular/
     - script:
       name: Install Deps
       code: |
-        sudo npm install
+        sudo npm install --unsafe-perm
       cwd: chorp_angular/
     - script:
       name: Test
