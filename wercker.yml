@@ -14,7 +14,7 @@ build:
     - script:
       name: Install angular-cli
       code: |
-        sudo npm install -g karma-cli angular-cli --unsafe-perm
+        sudo npm install -g karma-cli karma angular-cli --unsafe-perm
       cwd: chorp_angular/
     - script:
       name: Install Deps
