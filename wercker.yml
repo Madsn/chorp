@@ -9,12 +9,13 @@ build:
     - script:
       name: Install Globals
       code: |
-        sudo npm install -g typescript yarn angular-cli karma-cli --unsafe-perm
+        sudo npm install -g typescript angular-cli karma-cli --unsafe-perm
       cwd: chorp_angular/
     - script:
       name: Install Deps
       code: |
-        sudo yarn
+        sudo npm install --unsafe-perm
+        sudo npm install --dev --unsafe-perm
         #sudo npm install karma@1.2.0
         #sudo npm install karma-jasmine@1.0.2
         #sudo npm install karma-firefox-launcher@2.0.0
