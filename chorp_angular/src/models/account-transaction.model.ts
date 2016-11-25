@@ -1,7 +1,7 @@
 import { Account } from './account.model';
 
 export class AccountTransaction {
-  account: Account;
+  account: string;
   transactionTime: Date;
   amount: number;
 }
