@@ -30,6 +30,11 @@ build:
 deploy-staging:
   steps:
     - script:
+      name: Build
+      code: |
+        sudo npm run build
+      cwd: chorp_angular/
+    - script:
       name: Deploy to webfaction
       code: |
         sudo npm run deploy
