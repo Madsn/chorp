@@ -1,9 +1,18 @@
+import { AllowanceAccountService } from './../shared/allowance-account.service';
+import { AccountTransaction } from './../../../models/account-transaction.model';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Observable } from 'rxjs/Rx';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AllowanceAccountComponent } from './allowance-account.component';
+
+class AllowanceAccountServiceStub {
+  getAccountTransactions(): Observable<AccountTransaction[]> {
+    return Observable.of([]);
+  }
+}
 
 describe('AllowanceAccountComponent', () => {
   let component: AllowanceAccountComponent;
@@ -11,9 +20,12 @@ describe('AllowanceAccountComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllowanceAccountComponent ]
+      declarations: [AllowanceAccountComponent],
+      providers: [
+        { provide: AllowanceAccountService, useClass: AllowanceAccountServiceStub }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
