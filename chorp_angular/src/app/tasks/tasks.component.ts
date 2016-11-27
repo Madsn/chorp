@@ -24,7 +24,7 @@ export class TasksComponent implements OnInit {
   }
 
   private onDrop(args) {
-    const newStatus: StatusEnum = args[2].attributes['status'].value;
+    const newStatus: StatusEnum = StatusEnum[StatusEnum[args[2].attributes['status'].value]];
     const itemId: number = args[1].attributes['taskId'].value;
     this.tasks = this.tasksService.updateStatus(itemId, newStatus);
   }
