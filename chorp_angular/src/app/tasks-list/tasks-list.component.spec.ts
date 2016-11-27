@@ -1,9 +1,13 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
-import { TasksListComponent } from './tasks-list.component';
+import {TasksListComponent} from './tasks-list.component';
+import {DragulaModule} from "ng2-dragula/ng2-dragula";
+import {StatusLabelComponent} from "../status-label/status-label.component";
+import {FilterByStatusPipe} from "../tasks/types/status/filter-by-status.pipe";
+import {StatusPipe} from "../tasks/types/status/status.pipe";
 
 describe('TasksListComponent', () => {
   let component: TasksListComponent;
@@ -11,9 +15,10 @@ describe('TasksListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TasksListComponent ]
+      imports: [DragulaModule],
+      declarations: [TasksListComponent, StatusLabelComponent, FilterByStatusPipe, StatusPipe]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

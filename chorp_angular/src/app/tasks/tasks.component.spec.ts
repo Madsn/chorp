@@ -11,6 +11,7 @@ import {TaskType, ITaskType} from "./types/TaskType";
 import {DragulaModule} from "ng2-dragula/ng2-dragula";
 import {StatusLabelComponent} from "../status-label/status-label.component";
 import {FilterByStatusPipe} from "./types/status/filter-by-status.pipe";
+import {TasksListComponent} from "../tasks-list/tasks-list.component";
 
 describe('TasksComponent', () => {
   let component: TasksComponent;
@@ -19,7 +20,7 @@ describe('TasksComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, DragulaModule],
-      declarations: [TasksComponent, StatusPipe, FilterByStatusPipe, StatusLabelComponent]
+      declarations: [TasksComponent, TasksListComponent, StatusPipe, FilterByStatusPipe, StatusLabelComponent]
     })
       .compileComponents();
   }));

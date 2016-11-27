@@ -14,12 +14,10 @@ describe('FilterByStatusPipe', () => {
   it('filter by a status', () => {
     let pipe = new FilterByStatusPipe();
     let tasks: ITaskType[] = [];
-    tasks.push(new TaskType(100, "title", "description", StatusEnum.TODO));
-    tasks.push(new TaskType(101, "title", "description", StatusEnum.TODO));
-    tasks.push(new TaskType(102, "title", "description", StatusEnum.DOING));
-    tasks.push(new TaskType(103, "title", "description", StatusEnum.DOING));
-    tasks.push(new TaskType(104, "title", "description", StatusEnum.DONE));
-    console.log(tasks);
+    tasks.push(new TaskType().setId(101).setStatus(StatusEnum.TODO));
+    tasks.push(new TaskType().setId(102).setStatus(StatusEnum.DOING));
+    tasks.push(new TaskType().setId(103).setStatus(StatusEnum.DOING));
+    tasks.push(new TaskType().setId(104).setStatus(StatusEnum.DONE));
     expect(pipe.transform(tasks, StatusEnum.DOING).length).toBe(2);
     expect(pipe.transform(tasks, StatusEnum.DONE).length).toBe(1);
   });

@@ -6,7 +6,7 @@ import {StatusEnum} from "./types/status/StatusType";
 import {TaskType, ITaskType} from "./types/TaskType";
 
 function createTask(status: StatusEnum): ITaskType {
-  return new TaskType(100, "test task", "asd", status);
+  return new TaskType(<ITaskType>{id: 100, title: "test task", description: "asd", status: status});
 }
 
 describe('TasksService', () => {
