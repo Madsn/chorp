@@ -14,7 +14,7 @@ export class TasksComponent implements OnInit {
 
   statusEnum = StatusEnum;
   tasks: Array<ITaskType>; // Linked to the array in taskservice
-  newTask: TaskType;
+  newTask: ITaskType;
 
   constructor(private tasksService: TasksService, private dragulaService: DragulaService) {
     this.newTask = this.tasksService.getNewTask();

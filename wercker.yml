@@ -26,3 +26,11 @@ build:
       code: |
         sudo npm test
       cwd: chorp_angular/
+
+deploy-staging:
+  steps:
+    - script:
+      name: Deploy to webfaction
+      code: |
+        sudo npm run deploy
+      cwd: chorp_angular/
