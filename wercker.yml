@@ -30,6 +30,17 @@ build:
 deploy-staging:
   steps:
     - script:
+      name: Install Globals
+      code: |
+        sudo npm install -g typescript angular-cli karma-cli --unsafe-perm
+      cwd: chorp_angular/
+    - script:
+      name: Install Deps
+      code: |
+        sudo npm install --unsafe-perm
+        sudo npm install --dev --unsafe-perm
+      cwd: chorp_angular/
+    - script:
       name: Build
       code: |
         sudo npm run build
