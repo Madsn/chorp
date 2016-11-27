@@ -23,6 +23,7 @@ export class TasksService {
   }
 
   add(task: ITaskType) {
+    task.created = new Date();
     this.items.push(task);
     return task;
   }
@@ -30,13 +31,13 @@ export class TasksService {
   updateStatus(itemId: number, newStatus: StatusEnum) {
     for (var i in this.items) {
       if (this.items[i].id == itemId) {
-        this.items[i].status = newStatus;
+        this.items[i].setStatus(newStatus);
         return this.items;
       }
     }
   }
 
   getNewTask() {
-    return new TaskType({id: this.taskId++});
+    return new TaskType().setId(this.taskId++);
   }
 }
