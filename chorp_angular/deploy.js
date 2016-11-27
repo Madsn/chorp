@@ -6,7 +6,7 @@ var config = {
   password: process.env.VPS_PASS || "", // optional, prompted if none given
   host: "chorpangular.noptech.com",
   port: 21,
-  localRoot: __dirname + "/dist",
+  localRoot: "./dist",
   remoteRoot: "./webapps/chorp_angular",
   exclude: ['.git', '.idea', 'tmp/*']
 };
