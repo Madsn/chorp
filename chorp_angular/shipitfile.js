@@ -6,12 +6,13 @@ module.exports = function (shipit) {
       workspace: '/repo/tmp/chorp',
       rsyncFrom: 'c/repo/tmp/chorp',
       dirToCopy: 'chorp_angular/dist',
-      deployTo: '/home/madsn/webapps/chorp_angular',
+      deployTo: '/home/madsn/webapps/chorp_angular_deployment',
       repositoryUrl: 'https://github.com/Noptech/chorp.git',
       //ignores: ['.git', 'node_modules'],
+      branch: 'Todo-list',
       rsync: ['--del'],
       keepReleases: 2,
-      key: '/home/mikma/.ssh/id_rsa',
+      key: '~/.ssh/id_rsa',
       shallowClone: true
     },
     staging: {
@@ -19,18 +20,15 @@ module.exports = function (shipit) {
     }
   });
 
-  shipit.task('pwd', function () {
-    console.log('printing working directory');
+  shipit.task('build', function () {
+    console.log('building...');
     var dir = shipit.config.workspace + '/chorp_angular';
     shipit.local('cd', {cwd: dir}).then(function() {
-      shipit.local('npm run build', {cwd: dir}).then(function() {
-        console.log('done building');
-        return shipit.local('pwd');
-      });
+      console.log('done building');
     });
   });
-  shipit.on('fetched', function () {
-    return shipit.local('pwd');
 
+  shipit.on('fetched', function () {
+    return shipit.start('build');
   });
 };
